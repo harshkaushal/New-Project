@@ -1,8 +1,0 @@
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\bin\Debug\Ekomsys.DataAccess.dll.config
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\bin\Debug\Ekomsys.DataAccess.dll
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\bin\Debug\Ekomsys.DataAccess.pdb
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\bin\Debug\EntityFramework.dll
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\bin\Debug\EntityFramework.xml
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\obj\Debug\Ekomsys.DataAccess.csprojResolveAssemblyReference.cache
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\obj\Debug\Ekomsys.DataAccess.dll
-C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.DataAccess\obj\Debug\Ekomsys.DataAccess.pdb
