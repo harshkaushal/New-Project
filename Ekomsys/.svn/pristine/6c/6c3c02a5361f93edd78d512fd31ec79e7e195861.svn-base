@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<repositories>
-  <repository path="..\Ekomsys.Common\packages.config" />
-  <repository path="..\Ekomsys.DataAccess\packages.config" />
-  <repository path="..\Ekomsys.Entities\packages.config" />
-  <repository path="..\Ekomsys.Web\packages.config" />
-</repositories>
