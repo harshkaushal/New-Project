@@ -1,0 +1,7 @@
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Entities\bin\Debug\Ekomsys.Entities.dll.config
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Entities\bin\Debug\Ekomsys.Entities.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Entities\bin\Debug\Ekomsys.Entities.pdb
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Entities\bin\Debug\EntityFramework.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Entities\bin\Debug\EntityFramework.xml
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Entities\obj\Debug\Ekomsys.Entities.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Entities\obj\Debug\Ekomsys.Entities.pdb

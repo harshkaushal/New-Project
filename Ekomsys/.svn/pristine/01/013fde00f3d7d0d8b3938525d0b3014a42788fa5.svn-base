@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EkomsysModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DevSamplesEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Banners" EntityType="EkomsysModel.Banner" />
+  </EntityContainer>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="BannerId" />
+      <PropertyRef Name="BannerGroup" />
+      <PropertyRef Name="NavigateUrl" />
+      <PropertyRef Name="ImageUrl" />
+      <PropertyRef Name="Entered" />
+      <PropertyRef Name="Updated" />
+      <PropertyRef Name="Hits" />
+      <PropertyRef Name="MaxHits" />
+      <PropertyRef Name="ResetHits" />
+      <PropertyRef Name="Clicks" />
+      <PropertyRef Name="ResetClicks" />
+      <PropertyRef Name="Active" />
+      <PropertyRef Name="SortOrder" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="Width" />
+      <PropertyRef Name="Height" />
+      <PropertyRef Name="BannerType" />
+    </Key>
+    <Property Name="BannerId" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="BannerGroup" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="NavigateUrl" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Entered" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Hits" Type="Int32" Nullable="false" />
+    <Property Name="MaxHits" Type="Int32" Nullable="false" />
+    <Property Name="ResetHits" Type="Int32" Nullable="false" />
+    <Property Name="Clicks" Type="Int32" Nullable="false" />
+    <Property Name="ResetClicks" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <Property Name="BannerType" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,5 @@
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Business\bin\Debug\Ekomsys.Business.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Business\bin\Debug\Ekomsys.Business.pdb
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Business\obj\Debug\Ekomsys.Business.csprojResolveAssemblyReference.cache
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Business\obj\Debug\Ekomsys.Business.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Business\obj\Debug\Ekomsys.Business.pdb
