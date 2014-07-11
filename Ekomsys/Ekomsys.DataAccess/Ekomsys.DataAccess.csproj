@@ -39,6 +39,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ContextManager.cs" />
+    <Compile Include="Classes\RepositoryBase.cs" />
+    <Compile Include="Classes\RepositoryClasses.cs" />
+    <Compile Include="Classes\RepositoryContext.cs" />
     <Compile Include="Edmx\Banner.cs">
       <DependentUpon>Ekomsys.tt</DependentUpon>
     </Compile>
@@ -65,6 +70,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ekomsys.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IRepositoryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ekomsys.Entities\Ekomsys.Entities.csproj">
+      <Project>{1bbd52a8-a53e-4199-88aa-4968d6d0047d}</Project>
+      <Name>Ekomsys.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

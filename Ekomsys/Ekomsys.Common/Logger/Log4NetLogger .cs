@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace USAGreenCard.Common.Logger
+namespace Ekomsys.Common.Logger
 {
     using log4net;
     public static class Log4NetLogger 

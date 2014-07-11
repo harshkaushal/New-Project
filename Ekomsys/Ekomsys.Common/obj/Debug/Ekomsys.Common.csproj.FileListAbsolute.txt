@@ -5,3 +5,10 @@ C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Common\obj\Debu
 C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Common\bin\Debug\log4net.dll
 C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Common\bin\Debug\log4net.xml
 C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Business\Ekomsys.Common\obj\Debug\Ekomsys.Common.csprojResolveAssemblyReference.cache
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Common\bin\Debug\Ekomsys.Common.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Common\bin\Debug\Ekomsys.Common.pdb
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Common\bin\Debug\log4net.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Common\bin\Debug\log4net.xml
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Common\obj\Debug\Ekomsys.Common.csprojResolveAssemblyReference.cache
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Common\obj\Debug\Ekomsys.Common.dll
+C:\Clients\Sarabjit\New-Project\Ekomsys\Ekomsys.Common\obj\Debug\Ekomsys.Common.pdb
