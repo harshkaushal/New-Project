@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<resource-action-mapping>
+	<resource file="resource-actions/pacnet-connect.xml" />
+</resource-action-mapping>

@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3faf78511f704a2ca130f3d2f4c66e48" Name="Diagram1">
-        <EntityTypeShape EntityType="EkomsysModel.Banner" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_News" Width="1.5" PointX="4.0608485080585108" PointY="1.4060968763223369" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

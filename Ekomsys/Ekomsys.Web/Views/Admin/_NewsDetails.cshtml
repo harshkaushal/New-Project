@@ -1,0 +1,15 @@
+﻿@model Ekomsys.Entities.tb_News
+<div class="accordion-group">
+    <div class="accordion-heading active">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseToggle1">
+            <em class="fa fa-plus icon-fixed-width"></em>
+            @Model.Title
+        </a>
+    </div>
+    <div id="collapseToggle1" class="accordion-body collapse in">
+        <div class="accordion-inner">
+            @Model.Description
+
+        </div>
+    </div>
+</div>

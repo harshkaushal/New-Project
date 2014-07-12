@@ -4,116 +4,44 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EkomsysModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EkomsysModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="EkomsysModelStoreContainer">
-          <EntitySet Name="Banners" EntityType="EkomsysModel.Store.Banners" store:Type="Tables" store:Schema="dbo" store:Name="Banners">
-            <DefiningQuery>SELECT 
-      [Banners].[BannerId] AS [BannerId], 
-      [Banners].[BannerGroup] AS [BannerGroup], 
-      [Banners].[NavigateUrl] AS [NavigateUrl], 
-      [Banners].[ImageUrl] AS [ImageUrl], 
-      [Banners].[Entered] AS [Entered], 
-      [Banners].[Updated] AS [Updated], 
-      [Banners].[Hits] AS [Hits], 
-      [Banners].[MaxHits] AS [MaxHits], 
-      [Banners].[ResetHits] AS [ResetHits], 
-      [Banners].[Clicks] AS [Clicks], 
-      [Banners].[ResetClicks] AS [ResetClicks], 
-      [Banners].[Active] AS [Active], 
-      [Banners].[SortOrder] AS [SortOrder], 
-      [Banners].[Type] AS [Type], 
-      [Banners].[Width] AS [Width], 
-      [Banners].[Height] AS [Height], 
-      [Banners].[BannerType] AS [BannerType]
-      FROM [dbo].[Banners] AS [Banners]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="tb_News" EntityType="EkomsysModel.Store.tb_News" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DevSamples.dbo.Banners' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="Banners">
+        <EntityType Name="tb_News">
           <Key>
-            <PropertyRef Name="BannerId" />
-            <PropertyRef Name="BannerGroup" />
-            <PropertyRef Name="NavigateUrl" />
-            <PropertyRef Name="ImageUrl" />
-            <PropertyRef Name="Entered" />
-            <PropertyRef Name="Updated" />
-            <PropertyRef Name="Hits" />
-            <PropertyRef Name="MaxHits" />
-            <PropertyRef Name="ResetHits" />
-            <PropertyRef Name="Clicks" />
-            <PropertyRef Name="ResetClicks" />
-            <PropertyRef Name="Active" />
-            <PropertyRef Name="SortOrder" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="Width" />
-            <PropertyRef Name="Height" />
-            <PropertyRef Name="BannerType" />
+            <PropertyRef Name="News_Id" />
           </Key>
-          <Property Name="BannerId" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="BannerGroup" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="NavigateUrl" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="ImageUrl" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Entered" Type="datetime" Nullable="false" />
-          <Property Name="Updated" Type="datetime" Nullable="false" />
-          <Property Name="Hits" Type="int" Nullable="false" />
-          <Property Name="MaxHits" Type="int" Nullable="false" />
-          <Property Name="ResetHits" Type="int" Nullable="false" />
-          <Property Name="Clicks" Type="int" Nullable="false" />
-          <Property Name="ResetClicks" Type="int" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="SortOrder" Type="int" Nullable="false" />
-          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Width" Type="int" Nullable="false" />
-          <Property Name="Height" Type="int" Nullable="false" />
-          <Property Name="BannerType" Type="int" Nullable="false" />
+          <Property Name="News_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Posted_Date" Type="datetime" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EkomsysModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DevSamplesEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Banners" EntityType="EkomsysModel.Banner" />
+          <EntitySet Name="tb_News" EntityType="EkomsysModel.tb_News" />
         </EntityContainer>
-        <EntityType Name="Banner">
+        <EntityType Name="tb_News">
           <Key>
-            <PropertyRef Name="BannerId" />
-            <PropertyRef Name="BannerGroup" />
-            <PropertyRef Name="NavigateUrl" />
-            <PropertyRef Name="ImageUrl" />
-            <PropertyRef Name="Entered" />
-            <PropertyRef Name="Updated" />
-            <PropertyRef Name="Hits" />
-            <PropertyRef Name="MaxHits" />
-            <PropertyRef Name="ResetHits" />
-            <PropertyRef Name="Clicks" />
-            <PropertyRef Name="ResetClicks" />
-            <PropertyRef Name="Active" />
-            <PropertyRef Name="SortOrder" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="Width" />
-            <PropertyRef Name="Height" />
-            <PropertyRef Name="BannerType" />
+            <PropertyRef Name="News_Id" />
           </Key>
-          <Property Name="BannerId" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="BannerGroup" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="NavigateUrl" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Entered" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Hits" Type="Int32" Nullable="false" />
-          <Property Name="MaxHits" Type="Int32" Nullable="false" />
-          <Property Name="ResetHits" Type="Int32" Nullable="false" />
-          <Property Name="Clicks" Type="Int32" Nullable="false" />
-          <Property Name="ResetClicks" Type="Int32" Nullable="false" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="SortOrder" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="Width" Type="Int32" Nullable="false" />
-          <Property Name="Height" Type="Int32" Nullable="false" />
-          <Property Name="BannerType" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="News_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Posted_Date" Precision="3" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -121,26 +49,18 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EkomsysModelStoreContainer" CdmEntityContainer="DevSamplesEntities">
-          <EntitySetMapping Name="Banners">
-            <EntityTypeMapping TypeName="EkomsysModel.Banner">
-              <MappingFragment StoreEntitySet="Banners">
-                <ScalarProperty Name="BannerId" ColumnName="BannerId" />
-                <ScalarProperty Name="BannerGroup" ColumnName="BannerGroup" />
-                <ScalarProperty Name="NavigateUrl" ColumnName="NavigateUrl" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="Entered" ColumnName="Entered" />
-                <ScalarProperty Name="Updated" ColumnName="Updated" />
-                <ScalarProperty Name="Hits" ColumnName="Hits" />
-                <ScalarProperty Name="MaxHits" ColumnName="MaxHits" />
-                <ScalarProperty Name="ResetHits" ColumnName="ResetHits" />
-                <ScalarProperty Name="Clicks" ColumnName="Clicks" />
-                <ScalarProperty Name="ResetClicks" ColumnName="ResetClicks" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="BannerType" ColumnName="BannerType" />
+          <EntitySetMapping Name="tb_News">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_News">
+              <MappingFragment StoreEntitySet="tb_News">
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Posted_Date" ColumnName="Posted_Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="News_Id" ColumnName="News_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -49,8 +49,8 @@ namespace Ekomsys.Web.Helpers
     {
         public BusinessLogicRegistry()
         {
-            For<IMenuBAL>().Use<MenuBAL>();
-            
+            //For<IMenuBAL>().Use<MenuBAL>();
+            For<INewsBAL>().Use<NewsBAL>();
         }
     }
 }

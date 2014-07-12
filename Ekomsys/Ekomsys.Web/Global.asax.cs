@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ekomsys.Web.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,8 @@ namespace Ekomsys.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            StructureMapper.Run();
         }
     }
 }

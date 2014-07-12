@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+	<portlet-resource>
+		<portlet-name>communications</portlet-name>
+		<supports>
+			<action-key>DEFAULT</action-key>
+			<action-key>POLLSETTING</action-key>
+			<action-key>UPLOADESCALATION</action-key>
+			<action-key>HISTORY</action-key>			
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+			
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>ADD_ENTRY</action-key>
+			<action-key>CONFIGURATION</action-key>
+		</guest-unsupported>
+	</portlet-resource>
+	
+		<portlet-resource>
+		<portlet-name>networks</portlet-name>
+		<supports>
+			<action-key>DIAIP</action-key>
+			<action-key>IPVPN</action-key>
+			<action-key>MANAGED-ROUTER</action-key>
+			<action-key>MANAGED-FIREWALL</action-key>
+			<action-key>GLOBAL-IPVPN-PERFORMANCE</action-key>	
+					
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+			
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>ADD_ENTRY</action-key>
+			<action-key>CONFIGURATION</action-key>
+		</guest-unsupported>
+	</portlet-resource>
+	
+	<portlet-resource>
+		<portlet-name>tickets</portlet-name>
+		<supports>
+			<action-key>VIEW</action-key>
+			<action-key>CREATE</action-key>
+			<action-key>VIEWINQUIRE</action-key>
+			<action-key>VIEWDETAILS</action-key>
+			<action-key>VIEWPROGRESSION</action-key>
+			<action-key>INQUIRE</action-key>					
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+			<action-key>VIEWDETAILS</action-key>			
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>CREATE</action-key>
+			<action-key>VIEWINQUIRE</action-key>
+			<action-key>VIEWDETAILS</action-key>
+			<action-key>VIEWPROGRESSION</action-key>
+			<action-key>INQUIRE</action-key>
+		</guest-unsupported>
+	</portlet-resource>
+	
+</resource-action-mapping>

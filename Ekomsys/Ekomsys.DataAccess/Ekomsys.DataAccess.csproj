@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -51,9 +54,6 @@
     <Compile Include="Classes\RepositoryBase.cs" />
     <Compile Include="Classes\RepositoryClasses.cs" />
     <Compile Include="Classes\RepositoryContext.cs" />
-    <Compile Include="Edmx\Banner.cs">
-      <DependentUpon>Ekomsys.tt</DependentUpon>
-    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Edmx\Ekomsys.Context.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +69,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ekomsys.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Edmx\tb_News.cs">
+      <DependentUpon>Ekomsys.tt</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IRepositoryContext.cs" />

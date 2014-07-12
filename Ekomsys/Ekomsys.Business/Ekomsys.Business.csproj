@@ -39,11 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\NewsBAL.cs" />
     <Compile Include="Interfaces\IMenuBAL.cs" />
     <Compile Include="Classes\MenuBAL.cs" />
+    <Compile Include="Interfaces\INewsBAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Ekomsys.DataAccess\Ekomsys.DataAccess.csproj">
+      <Project>{8b12b19c-c217-4584-949e-194055f9a1c2}</Project>
+      <Name>Ekomsys.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ekomsys.Entities\Ekomsys.Entities.csproj">
+      <Project>{1bbd52a8-a53e-4199-88aa-4968d6d0047d}</Project>
+      <Name>Ekomsys.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
