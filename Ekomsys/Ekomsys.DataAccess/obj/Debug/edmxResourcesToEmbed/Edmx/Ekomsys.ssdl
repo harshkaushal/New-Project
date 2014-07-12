@@ -1,67 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EkomsysModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="EkomsysModelStoreContainer">
-    <EntitySet Name="Banners" EntityType="EkomsysModel.Store.Banners" store:Type="Tables" store:Schema="dbo" store:Name="Banners">
-      <DefiningQuery>SELECT 
-      [Banners].[BannerId] AS [BannerId], 
-      [Banners].[BannerGroup] AS [BannerGroup], 
-      [Banners].[NavigateUrl] AS [NavigateUrl], 
-      [Banners].[ImageUrl] AS [ImageUrl], 
-      [Banners].[Entered] AS [Entered], 
-      [Banners].[Updated] AS [Updated], 
-      [Banners].[Hits] AS [Hits], 
-      [Banners].[MaxHits] AS [MaxHits], 
-      [Banners].[ResetHits] AS [ResetHits], 
-      [Banners].[Clicks] AS [Clicks], 
-      [Banners].[ResetClicks] AS [ResetClicks], 
-      [Banners].[Active] AS [Active], 
-      [Banners].[SortOrder] AS [SortOrder], 
-      [Banners].[Type] AS [Type], 
-      [Banners].[Width] AS [Width], 
-      [Banners].[Height] AS [Height], 
-      [Banners].[BannerType] AS [BannerType]
-      FROM [dbo].[Banners] AS [Banners]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="tb_News" EntityType="EkomsysModel.Store.tb_News" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'DevSamples.dbo.Banners' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-  <EntityType Name="Banners">
+  <EntityType Name="tb_News">
     <Key>
-      <PropertyRef Name="BannerId" />
-      <PropertyRef Name="BannerGroup" />
-      <PropertyRef Name="NavigateUrl" />
-      <PropertyRef Name="ImageUrl" />
-      <PropertyRef Name="Entered" />
-      <PropertyRef Name="Updated" />
-      <PropertyRef Name="Hits" />
-      <PropertyRef Name="MaxHits" />
-      <PropertyRef Name="ResetHits" />
-      <PropertyRef Name="Clicks" />
-      <PropertyRef Name="ResetClicks" />
-      <PropertyRef Name="Active" />
-      <PropertyRef Name="SortOrder" />
-      <PropertyRef Name="Type" />
-      <PropertyRef Name="Width" />
-      <PropertyRef Name="Height" />
-      <PropertyRef Name="BannerType" />
+      <PropertyRef Name="News_Id" />
     </Key>
-    <Property Name="BannerId" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="BannerGroup" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="NavigateUrl" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="ImageUrl" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="Entered" Type="datetime" Nullable="false" />
-    <Property Name="Updated" Type="datetime" Nullable="false" />
-    <Property Name="Hits" Type="int" Nullable="false" />
-    <Property Name="MaxHits" Type="int" Nullable="false" />
-    <Property Name="ResetHits" Type="int" Nullable="false" />
-    <Property Name="Clicks" Type="int" Nullable="false" />
-    <Property Name="ResetClicks" Type="int" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="SortOrder" Type="int" Nullable="false" />
-    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="Width" Type="int" Nullable="false" />
-    <Property Name="Height" Type="int" Nullable="false" />
-    <Property Name="BannerType" Type="int" Nullable="false" />
+    <Property Name="News_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Posted_Date" Type="datetime" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Created_Date" Type="datetime" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Modify_Date" Type="datetime" />
+    <Property Name="Modify_By" Type="int" />
   </EntityType>
 </Schema>

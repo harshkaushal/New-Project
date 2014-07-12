@@ -56,23 +56,10 @@
     <Compile Include="Classes\RepositoryClasses.cs" />
     <Compile Include="Classes\RepositoryContext.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="Edmx\Ekomsys.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Ekomsys.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Edmx\Ekomsys.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Ekomsys.tt</DependentUpon>
-    </Compile>
     <Compile Include="Edmx\Ekomsys.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ekomsys.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Edmx\tb_News.cs">
-      <DependentUpon>Ekomsys.tt</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IRepositoryContext.cs" />
@@ -86,18 +73,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Edmx\Ekomsys.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Ekomsys.edmx</DependentUpon>
-      <LastGenOutput>Ekomsys.Context.cs</LastGenOutput>
-    </None>
     <None Include="Edmx\Ekomsys.edmx.diagram">
       <DependentUpon>Ekomsys.edmx</DependentUpon>
-    </None>
-    <None Include="Edmx\Ekomsys.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Ekomsys.edmx</DependentUpon>
-      <LastGenOutput>Ekomsys.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

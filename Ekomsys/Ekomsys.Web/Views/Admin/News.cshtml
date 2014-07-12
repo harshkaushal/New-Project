@@ -14,7 +14,7 @@
             <div class="accordion" id="accordion3">
                 @foreach (var item in Model)
                 {
-                    @{Html.RenderPartial("_NewsDetails", item);}
+                    Html.RenderPartial("_NewsDetails", item);
                 }
             </div>
             <!-- end accordion -->

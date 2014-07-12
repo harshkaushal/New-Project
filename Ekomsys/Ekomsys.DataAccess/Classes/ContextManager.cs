@@ -39,7 +39,7 @@ namespace Ekomsys.DataAccess.Classes
 			ObjectContext objectContext = GetCurrentObjectContext(contextKey);
 			if (objectContext == null) // create and store the object context
 			{
-                var dbcontext = new Ekomsys.DataAccess.Edmx.DevSamplesEntities();                  
+                var dbcontext = new Ekomsys.Entities.DevSamplesEntities();                  
                 objectContext = ((System.Data.Entity.Infrastructure.IObjectContextAdapter)dbcontext).ObjectContext;// (System.Data.Entity.Infrastructure.IObjectContextAdapter)dbcontext).
                 //objectContext.ContextOptions.ProxyCreationEnabled = false;
                 dbcontext = null;

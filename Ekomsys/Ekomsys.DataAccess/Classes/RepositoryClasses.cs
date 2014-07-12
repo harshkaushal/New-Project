@@ -28,13 +28,13 @@ namespace Ekomsys.DataAccess.Classes
 
         public bool AddNews(tb_News newsModel)
         {
-            using (Edmx.DevSamplesEntities _dbEntity=new Edmx.DevSamplesEntities())
+            using (Ekomsys.Entities.DevSamplesEntities _dbEntity = new Ekomsys.Entities.DevSamplesEntities())
             {
                 try
                 {
-                    Edmx.tb_News news = new Edmx.tb_News();
-                   
-                    AutoMapper.Mapper.CreateMap<tb_News,Edmx.tb_News>();
+                    Ekomsys.Entities.tb_News news = new Ekomsys.Entities.tb_News();
+
+                    AutoMapper.Mapper.CreateMap<tb_News, Ekomsys.Entities.tb_News>();
                     news = AutoMapper.Mapper.Map(newsModel, news);
                     _dbEntity.tb_News.Add(news);
                     return true;
@@ -48,10 +48,10 @@ namespace Ekomsys.DataAccess.Classes
 
         public List<tb_News> GetAllNews()
         {
-            using (Edmx.DevSamplesEntities _dbEntity=new Edmx.DevSamplesEntities())
+            using (Ekomsys.Entities.DevSamplesEntities _dbEntity = new Ekomsys.Entities.DevSamplesEntities())
             {
-                List<Edmx.tb_News> dbList = _dbEntity.tb_News.OrderByDescending(d => d.News_Id).ToList();
-                AutoMapper.Mapper.CreateMap<Edmx.tb_News, tb_News>();
+                List<Ekomsys.Entities.tb_News> dbList = _dbEntity.tb_News.OrderByDescending(d => d.News_Id).ToList();
+                AutoMapper.Mapper.CreateMap<Ekomsys.Entities.tb_News, tb_News>();
                 List<tb_News> newsModel = new List<tb_News>();
                 newsModel = AutoMapper.Mapper.Map(dbList, newsModel);
                 return newsModel;
