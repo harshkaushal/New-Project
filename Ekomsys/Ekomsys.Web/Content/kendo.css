@@ -1,0 +1,224 @@
+
+.k-dropdown-wrap {
+    height: 26px;
+}
+.k-dropdown-wrap .k-input {
+    padding-top: 2px;
+}
+
+/*.k-icon {
+    margin-top:-3px;
+}*/
+
+/*kendo Overwrite*/
+.k-edit-form-container {
+    width: 400px;
+    margin-bottom: 26px;
+    padding:7px;
+}
+
+/*meeeeeee*/
+.k-widget.k-grid tr {
+    cursor: pointer;
+    
+}
+.k-widget.k-grid tr:hover, .k-widget.k-grid tr.k-state-selected {
+    background-color: #94c0d2;
+    /*background-image: none, linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0px, rgba(255, 255, 255, 0) 100%);*/
+    color: #fff;
+}
+/*.k-state-focused {
+    font-weight:bold;
+    box-shadow:none;
+}*/
+
+.k-grid table {
+  font-size: 14px;
+font-family: Arial;
+}
+.k-grid-header .k-header{
+    font-weight:bold;
+}
+.k-pager-wrap {
+    font-size:11px;
+}
+
+[role='gridcell'] a span.k-icon {
+    display: none;
+}
+.k-window>div.k-popup-edit-form.k-viewhtml-dialog {
+    padding:10px;
+}
+.k-editor-dialog .k-editor-textarea {
+    width:99%;
+}
+.k-editor-dialog.k-viewhtml-dialog {
+    overflow-x:hidden !important;
+}
+.k-editor-dialog.k-viewhtml-dialog .k-editor-textarea {
+    margin-bottom:35px;
+}
+.k-edit-form-container.k-viewhtml-dialog {
+    margin-bottom:0;
+}
+.k-viewhtml-dialog .k-edit-buttons {
+    color: #fff;
+    padding: 4px 0;
+    font-size: 13px;
+    position: absolute;
+    z-index: 10;
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 3px #BECDDB;
+    left: 0;
+}
+.k-viewhtml-dialog .k-edit-buttons button {
+    padding: 3px 16px;
+    font-weight: bold;
+    margin-left: 6px;
+    border-radius: 2px;
+    transition: 0.2s ease all 0s;
+    color: #fff;
+    border: 0;
+}
+.k-viewhtml-dialog .k-edit-buttons button:first-child {
+    background:#ef4e24;
+}
+.k-viewhtml-dialog .k-edit-buttons button:last-child {
+    background:#4c4c4d;
+}
+.k-viewhtml-dialog .k-secondary.k-button:hover {
+    color:#fff;
+    border:0;
+}
+.k-edit-form-container .k-edit-buttons {
+    border:0;
+}
+ul.popup-ul.padding-top {
+    padding-top:0;
+}
+ul.popup-ul.padding-top li {
+    width:auto;
+    float:none;
+    border-bottom: 1px dashed #222931;
+    padding:8px 2%;
+}
+ul.popup-ul.padding-top li:first-child {
+    padding-top:0;
+}
+ul.popup-ul.padding-top li:last-child {
+    border:none;
+    padding-bottom:0;
+}
+
+/*Kendo Grid*/
+.k-grid table a.k-button {
+    border: medium none;
+    height: 25px;
+    min-width: inherit;
+    overflow: hidden;
+    padding: 0;
+    text-indent: -99999px;
+    width: 25px;
+}
+
+.k-grid table a.k-grid-archive,.k-grid table a.k-grid-delete
+{
+    background: url("../Content/images/delete.png") no-repeat scroll center center transparent;
+}
+.k-grid table a.k-grid-edit {
+    background: url("../Content/images/edit.png") no-repeat scroll center center transparent;
+}
+
+.k-grid table a.k-button:hover {
+    border: none;
+    background-color: #fff;
+}
+
+.k-grid table a.k-button.hide-action {
+    display: none;
+}
+.pending {
+    background: none repeat scroll 0 0 #fff3db;
+}
+.color-define span {
+    padding:0 5px;
+    font-size:12px;
+    float:right;
+    border-left:1px solid #4c4c4d;
+}
+.color-define span:last-child {
+    border-left:0;
+}
+span.pending-color b {
+    width:10px;
+    height:10px;
+    display:inline-block;
+    background:#fff3db;
+    margin-right:4px;
+}
+span.running-color b, span.active-color b {
+    width:10px;
+    height:10px;
+    display:inline-block;
+    background:#cefdff;
+    margin-right:4px;
+}
+span.paused-color b, span.inactive-color b {
+    width:10px;
+    height:10px;
+    display:inline-block;
+    background:#ffcece;
+    margin-right:4px;
+}
+span.over-budget-color b {
+    width:10px;
+    height:10px;
+    display:inline-block;
+    background:#f7dbd1;
+    margin-right:4px;
+}
+span.ended-color b {
+    width:10px;
+    height:10px;
+    display:inline-block;
+    background:#cfe8d7;
+    margin-right:4px;
+}
+.running, .active {
+    background: #cefdff;
+}
+.paused, .inactive {
+    background: #ffcece;
+}
+
+.over-budget {
+    background:#f7dbd1;
+}
+.ended {
+    background: #cfe8d7;
+}
+ul.popup-ul li.multi-select
+{
+    width:100%;
+    padding:0;
+}
+.k-multiselect-wrap
+{
+    height: 47px;
+    overflow-y: auto;
+    padding:5px;
+}
+.k-multiselect-wrap ul li
+{
+    width:auto;
+    padding:0 7px;
+}
+.k-multiselect-wrap .k-button
+{
+    background:#ef4e24;
+    color:#fff;
+    border:none;
+}
