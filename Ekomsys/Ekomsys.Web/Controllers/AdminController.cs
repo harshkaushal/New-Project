@@ -33,14 +33,28 @@ namespace Ekomsys.Web.Controllers
             return View(_newsBal.GetAllNews());
         }
 
+        [HttpGet]
+        public JsonResult NewsList()
+        {
+            var lst = _newsBal.GetAllNews().ToList();
+            return this.Json(lst,JsonRequestBehavior.AllowGet);
+        }
+
+
         [HttpPost]
-        public ActionResult News(tb_News NewsModel)
+        public ActionResult News(tb_News NewsModel,FormCollection form)
         {
             NewsModel.Created_By = 1;
             NewsModel.Modify_By = 1;
+            NewsModel.Created_Date = DateTime.UtcNow;
+            NewsModel.Modify_Date = DateTime.UtcNow;
+            NewsModel.Posted_Date = DateTime.UtcNow;
+            
+            //NewsModel.Title = Request.Form["title"];
+            NewsModel.Is_Active = true;
+            _newsBal.AddNews(NewsModel);
 
-
-            return View();
+            return View(_newsBal.GetAllNews());
         }
     }
 }
