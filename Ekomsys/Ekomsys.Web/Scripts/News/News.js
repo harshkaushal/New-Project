@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     NewsEvents.PageLoad.BindGrid();
-    NewsEvents.PageLoad.ShowPopup();
+    //NewsEvents.PageLoad.ShowPopup();
 });
 
 var NewsEvents = {
@@ -24,7 +24,8 @@ var NewsEvents = {
                             fields: {
                                 News_Id: { editable: false, nullable: true },
                                 Title: { validation: { required: true } },
-                                Description: { type: "string", validation: { required: true, min: 1 } },
+                                Description: { type: "string", validation: { required: true } },
+                                Is_Active: { type: "boolean" },
                                 Posted_Date: { editable: false, nullable: true },
                             }
                         }
@@ -34,7 +35,11 @@ var NewsEvents = {
                     transport: {
                         read: "NewsList"
                         , update: {
-                            url: "News",
+                            url: "Update",
+                            dataType: "json"
+                        },
+                        destroy: {
+                            url: "DeleteNews",
                             dataType: "json"
                         },
                         create: {
@@ -67,83 +72,12 @@ var NewsEvents = {
                     format: "{0:dd MMM yyyy}"
                 }
 
-                    , { command: ["edit"], title: "&nbsp;", width: "80px" }
+                    , { command: ["edit","destroy"], title: "&nbsp;", width: "170px" }
                 ]
                 , editable: true
                 , editable: "popup"
             });
 
         },
-        ShowPopup: function () {
-            var window = $("#window"),
-            undo = $("#jQanchorShowDialog").bind("click", function () {
-                window.data("kendoWindow").open();
-                undo.hide();
-            });
-
-            var onClose = function () {
-                undo.show()
-            }
-            if (!window.data("kendoWindow")) {
-
-                window.kendoWindow({
-                    width: "600px",
-                    title: "Test Add News",
-                    actions: ["Pin", "Maximize", "Minimize", "Close"],
-                    close: onClose
-                });
-            }
-            NewsEvents.SaveUpdateEvents.SaveNews();
-        }
     },
-    SaveUpdateEvents: {
-        SaveNews: function () {
-            //alert("call");
-            $("#submit").on("click", function () {
-                //  alert("click");
-                var form = $("form#myForm");
-                form.attr("action", "/Admin/News");
-                form.submit();
-            });
-
-            //NewsModel= {
-            //    Description: undefined,
-            //    Is_Active: undefined,
-            //    Title: undefined,
-            //    News_Image: undefined
-            //}
-
-            //NewsModel.Description = $("#jQNewsDescription").val();
-            //NewsModel.Is_Active = $("#jQNewsActive").is(":checked");
-            //NewsModel.Title = $("#jQNewsTitle").val();
-
-            //$.ajax({
-            //    type: "POST", url: uri + "UpdateAboutMe", contentType: "application/json", dataType: "html",
-            //    async: false,
-            //    data: JSON.stringify(UserModel),
-            //    beforeSend: function () { //$(".JQAboutMeEditSection").html(loadingimage);
-            //        ajaxStart($(document).height());
-            //    },
-            //    success: function (result) {
-            //        //$(".JQAboutMeEditSection").html(result);
-            //        closeAjaxProgress();
-            //        if (_updateType == "About") {
-            //            // $(".jQAboutMeMain").fadeIn(15000, function () {
-            //            $(".jQAboutMeMain").html(result);
-            //            //});
-            //        }
-            //        if (_updateType == "Contact") {
-            //            //$("#jQContactMe").fadeIn(15000, function () {
-            //            $("#jQContactMe").html(result);
-            //            //});
-            //        }
-            //    },
-            //    error: function (err) {
-            //        showAlertMessage("Error = " + err.statusText);
-            //        closeAjaxProgress();
-            //    }
-            //});
-
-        }//end SaveUpdateEvents.SaveNews
-    }//end NewsEvents.SaveUpdateEvents
 }//end NewsEvents

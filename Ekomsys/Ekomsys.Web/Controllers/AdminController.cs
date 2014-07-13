@@ -56,5 +56,21 @@ namespace Ekomsys.Web.Controllers
 
             return View(_newsBal.GetAllNews());
         }
+
+        public JsonResult Update(tb_News NewsModel)
+        {
+            NewsModel.Modify_Date = DateTime.UtcNow;
+            _newsBal.UpdateNews(NewsModel);
+            var lst = _newsBal.GetAllNews().ToList();
+            return this.Json(lst, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteNews(tb_News NewsModel)
+        {
+
+            _newsBal.DeleteNews(NewsModel.News_Id);
+            var lst = _newsBal.GetAllNews().ToList();
+            return this.Json(lst, JsonRequestBehavior.AllowGet);
+        }
     }
 }
