@@ -1,0 +1,28 @@
+﻿@using Ekomsys.Web.Models
+@model NewsModel
+
+<div width="100%">
+    <div width="30%">
+        <label>News Title</label>
+    </div>
+    <div width="70%">@Html.TextBoxFor(m => m.Title, new { @maxlength = "200", @style = "width:98%;height:30px" })</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Description</label>
+    </div>
+    <div width="70%">@Html.TextAreaFor(m => m.Description, new { @maxlength = "500", @style = "width:98%;height:50px" })</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Is Active</label>
+    </div>
+    <div width="70%">@Html.CheckBoxFor(m => m.Is_Active)</div>
+</div>
+<div width="100%" id="divPostedDate">
+    <div width="30%">
+        <label>Posted Date</label>
+    </div>
+    <div width="70%">@Html.Kendo().DatePickerFor(m => m.Posted_Date).Enable(false)</div>
+</div>
+

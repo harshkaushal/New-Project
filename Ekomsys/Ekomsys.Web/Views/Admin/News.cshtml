@@ -1,11 +1,74 @@
-﻿@model List<Ekomsys.Entities.tb_News>
+﻿@using Ekomsys.Web.Models
 
+@model List<NewsModel>
+@using Kendo.Mvc.UI
 @{
     ViewBag.Title = "News";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<script src='@Url.Content("~/Scripts/News/News.js")'></script>
+@*<script src='@Url.Content("~/Scripts/News/News.js")'></script>*@
 <h2>News</h2>
-<div id="grid"></div>
+@*<div id="grid"></div>
+*@
+
+@(Html.Kendo().Grid<NewsModel>()
+        .Name("kendoGrid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Title).Width(100).Title("Title");
+            columns.Bound(c => c.Description).Width(200).Title("Description");
+            columns.Bound(c => c.News_Id).Visible(false);
+            columns.Bound(c => c.Created_Date).Visible(false);
+            columns.Bound(c => c.Posted_Date).Visible(false);
+            columns.Bound(c => c.Is_Active);
+            columns.Command(command => { command.Edit().UpdateText("Update"); command.Destroy(); }).Width(100).HtmlAttributes(new { style = "text-align:center;" });
+        })
+        .ToolBar(t => t.Create().Text("Add news"))
+         .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("NewsEdit"))
+        .HtmlAttributes(new { style = "height: 380px;" })
+        .Scrollable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax().Events(e => e.RequestEnd("onRequestEnd")).Model(model => model.Id(p => p.News_Id))
+            .Read(read => read.Action("News_Read", "Admin"))
+            .Create(create => create.Action("News_Create", "Admin"))
+          .Update(update => update.Action("News_Update", "Admin"))
+            .Destroy(destroy => destroy.Action("News_Destroy", "Admin"))
+        ).Events(e => e.Edit("setPopupDimensions"))
+    )
 
 
+<script>
+
+    function setPopupDimensions(e) {
+        debugger;
+        if (e.model.News_Id != 0) {
+            $("#divPostedDate").show();
+            $(".k-window .k-window-title").text("Add News");
+            $(".k-window .k-grid-update").html("<span class=\"k-icon k-update\"></span>Create");
+        }
+        else {
+            $("#divPostedDate").hide();
+        }
+    }
+
+    function onRequestEnd(e) {
+
+        if (e.type == "update" && !e.response.Errors) {
+            alert("Update record is successfull");
+        }
+
+        if (e.type == "create" && !e.response.Errors) {
+            alert("Create record is successfull");
+        }
+
+        if (e.type == "destroy" && !e.response.Errors) {
+            alert("Record deleted successfully");
+        }
+    }
+
+</script>
