@@ -20,17 +20,20 @@ namespace Ekomsys.Business.Classes
         public bool AddNews(tb_News news)
         {
             _repository = new NewsRepository();
+            
             return _repository.AddNews(news);
         }
 
         public void UpdateNews(tb_News newsModel)
         {
             _repository = new NewsRepository();
-            tb_News dbNews = _repository.GetSingle(d => d.News_Id == newsModel.News_Id);
-            AutoMapper.Mapper.CreateMap<tb_News, Ekomsys.Entities.tb_News>();
-            AutoMapper.Mapper.Map(newsModel, dbNews);
+            _repository.UpdateNews(newsModel);
 
-            _repository.SaveChanges();
+           
+
+            //tb_News dbNews = _repository.GetSingle(d => d.News_Id == newsModel.News_Id);
+            //dbNews = newsModel;
+            //_repository.SaveChanges();
 
         }
 
