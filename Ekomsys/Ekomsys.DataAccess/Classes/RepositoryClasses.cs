@@ -28,15 +28,16 @@ namespace Ekomsys.DataAccess.Classes
 
         public bool AddNews(tb_News newsModel)
         {
-            using (Ekomsys.Entities.DevSamplesEntities _dbEntity = new Ekomsys.Entities.DevSamplesEntities())
+            using (Ekomsys.DataAccess.Edmx.DevSamplesEntities _dbEntity = new Ekomsys.DataAccess.Edmx.DevSamplesEntities())
             {
                 try
                 {
                     Ekomsys.Entities.tb_News news = new Ekomsys.Entities.tb_News();
-
+                    
                     AutoMapper.Mapper.CreateMap<tb_News, Ekomsys.Entities.tb_News>();
                     news = AutoMapper.Mapper.Map(newsModel, news);
                     _dbEntity.tb_News.Add(news);
+                    _dbEntity.SaveChanges();
                     return true;
                 }
                 catch
@@ -48,7 +49,7 @@ namespace Ekomsys.DataAccess.Classes
 
         public List<tb_News> GetAllNews()
         {
-            using (Ekomsys.Entities.DevSamplesEntities _dbEntity = new Ekomsys.Entities.DevSamplesEntities())
+            using (Ekomsys.DataAccess.Edmx.DevSamplesEntities _dbEntity = new Ekomsys.DataAccess.Edmx.DevSamplesEntities())
             {
                 List<Ekomsys.Entities.tb_News> dbList = _dbEntity.tb_News.OrderByDescending(d => d.News_Id).ToList();
                 AutoMapper.Mapper.CreateMap<Ekomsys.Entities.tb_News, tb_News>();

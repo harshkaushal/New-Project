@@ -13,9 +13,10 @@
 namespace Ekomsys.DataAccess.Edmx
 {
 
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+    using Ekomsys.Entities;
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
 
 
 public partial class DevSamplesEntities : DbContext

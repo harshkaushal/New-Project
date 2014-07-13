@@ -45,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ekomsys.Context.cs">
+      <DependentUpon>Ekomsys.Context.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Ekomsys.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Ekomsys.cs">
       <AutoGen>True</AutoGen>
