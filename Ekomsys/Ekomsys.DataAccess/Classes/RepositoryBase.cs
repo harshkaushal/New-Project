@@ -74,9 +74,20 @@ namespace Ekomsys.DataAccess.Classes
         /// <param name="entity">The entity.</param>
         public void Update(T entity)
         {
-            string esName = ((System.Data.Objects.ObjectSet<T>)this.ObjectSet).EntitySet.Name; //((System.Data.Metadata.Edm.EntitySetBase)(((System.Data.Objects.ObjectSet<Sample.Entities.Customer>)(this.ObjectSet)).EntitySet)).Name;           
-            this.RepositoryContext.ObjectContext.ApplyCurrentValues(esName, entity);
-            this.RepositoryContext.SaveChanges();
+
+
+            //entity existing = RepositoryContext.Set<T>().Find(key);
+            //if (existing != null)
+            //{
+            //    _context.Entry(existing).CurrentValues.SetValues(entity);
+            //    _context.SaveChanges();
+            //}
+            ObjectSet.AddObject(entity);
+            _repositoryContext.ObjectContext.ObjectStateManager.ChangeObjectState(entity, EntityState.Modified);
+            _repositoryContext.SaveChanges();
+            //string esName = ((System.Data.Objects.ObjectSet<T>)this.ObjectSet).EntitySet.Name; //((System.Data.Metadata.Edm.EntitySetBase)(((System.Data.Objects.ObjectSet<Sample.Entities.Customer>)(this.ObjectSet)).EntitySet)).Name;           
+            //this.RepositoryContext.ObjectContext.ApplyCurrentValues(esName, entity);
+            //this.RepositoryContext.SaveChanges();
 
         }
         /// <summary>

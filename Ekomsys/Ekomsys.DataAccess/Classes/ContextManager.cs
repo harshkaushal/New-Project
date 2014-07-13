@@ -6,6 +6,7 @@ using System.Collections;
 using System.Data.Objects;
 using System.Web;
 using System.Threading;
+using Ekomsys.Entities;
 
 
 namespace Ekomsys.DataAccess.Classes
@@ -39,7 +40,7 @@ namespace Ekomsys.DataAccess.Classes
 			ObjectContext objectContext = GetCurrentObjectContext(contextKey);
 			if (objectContext == null) // create and store the object context
 			{
-                var dbcontext = new Ekomsys.DataAccess.Edmx.DevSamplesEntities();                  
+                var dbcontext = new DevSamplesEntities();                  
                 objectContext = ((System.Data.Entity.Infrastructure.IObjectContextAdapter)dbcontext).ObjectContext;// (System.Data.Entity.Infrastructure.IObjectContextAdapter)dbcontext).
                 //objectContext.ContextOptions.ProxyCreationEnabled = false;
                 dbcontext = null;
