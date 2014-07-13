@@ -11,5 +11,7 @@ namespace Ekomsys.Business.Interfaces
     {
         bool AddNews(tb_News news);
         List<tb_News> GetAllNews();
+        void UpdateNews(tb_News newsModel);
+        void DeleteNews(int id);
     }
 }
