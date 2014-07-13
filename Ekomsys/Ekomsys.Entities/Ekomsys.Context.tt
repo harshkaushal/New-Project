@@ -2,7 +2,7 @@
 <#@ include file="EF.Utility.CS.ttinclude"#><#@
  output extension=".cs"#><#
 
-const string inputFile = @"Ekomsys.edmx";
+const string inputFile = @"../Ekomsys.DataAccess/Edmx/Ekomsys.edmx";
 var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);
@@ -50,7 +50,6 @@ if (container.FunctionImports.Any())
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
 using System.Linq;
-using Ekomsys.Entities;
 <#
 }
 #>
