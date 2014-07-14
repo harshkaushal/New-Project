@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3faf78511f704a2ca130f3d2f4c66e48" Name="Diagram1">
         <EntityTypeShape EntityType="EkomsysModel.tb_News" Width="1.5" PointX="4.0608485080585108" PointY="1.4060968763223369" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_Users" Width="1.5" PointX="2" PointY="1.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

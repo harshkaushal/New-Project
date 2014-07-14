@@ -56,6 +56,7 @@
     <Compile Include="Classes\NewsRepositoryClasses.cs" />
     <Compile Include="Classes\RepositoryContext.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Classes\UserRepository.cs" />
     <Compile Include="Edmx\Ekomsys.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
