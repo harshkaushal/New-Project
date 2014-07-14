@@ -50,6 +50,7 @@ namespace Ekomsys.DataAccess.Classes
                 }
             }
         }
+
         public bool DeleteUser(tb_Users userModel)
         {
             using (DevSamplesEntities _dbEntity = new DevSamplesEntities())
