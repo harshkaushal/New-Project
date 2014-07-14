@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\UsersBAL.cs" />
     <Compile Include="Classes\NewsBAL.cs" />
+    <Compile Include="Interfaces\IUsersBAL.cs" />
     <Compile Include="Interfaces\IMenuBAL.cs" />
     <Compile Include="Classes\MenuBAL.cs" />
     <Compile Include="Interfaces\INewsBAL.cs" />
