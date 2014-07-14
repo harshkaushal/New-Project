@@ -7,7 +7,9 @@
     <Schema Namespace="EkomsysModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="EkomsysModelStoreContainer">
           <EntitySet Name="tb_News" EntityType="EkomsysModel.Store.tb_News" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_User_UserType_Mapping" EntityType="EkomsysModel.Store.tb_User_UserType_Mapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_Users" EntityType="EkomsysModel.Store.tb_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_UserType" EntityType="EkomsysModel.Store.tb_UserType" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="tb_News">
           <Key>
@@ -23,6 +25,32 @@
           <Property Name="Modify_Date" Type="datetime" />
           <Property Name="Modify_By" Type="int" />
         </EntityType>
+        <EntityType Name="tb_User_UserType_Mapping">
+          <Key>
+            <PropertyRef Name="User_UserType_Mapping_Id" />
+          </Key>
+          <Property Name="User_UserType_Mapping_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="UserType_Id" Type="int" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_UserType">
+          <Key>
+            <PropertyRef Name="UserType_Id" />
+          </Key>
+          <Property Name="UserType_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
+        </EntityType>
+
         <EntityType Name="tb_Users">
           <Key>
             <PropertyRef Name="User_Id" />
@@ -44,12 +72,15 @@
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EkomsysModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DevSamplesEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="tb_News" EntityType="EkomsysModel.tb_News" />
+          <EntitySet Name="tb_User_UserType_Mapping" EntityType="EkomsysModel.tb_User_UserType_Mapping" />
+          <EntitySet Name="tb_UserType" EntityType="EkomsysModel.tb_UserType" />
           <EntitySet Name="tb_Users" EntityType="EkomsysModel.tb_Users" />
           <FunctionImport Name="usp_CheckLogin" ReturnType="Collection(Int32)">
             <Parameter Name="Username" Mode="In" Type="String" />
@@ -64,6 +95,31 @@
           <Property Type="String" Name="Title" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Description" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Posted_Date" Precision="3" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+        </EntityType>
+        <EntityType Name="tb_User_UserType_Mapping">
+          <Key>
+            <PropertyRef Name="User_UserType_Mapping_Id" />
+          </Key>
+          <Property Type="Int32" Name="User_UserType_Mapping_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="User_Id" />
+          <Property Type="Int32" Name="UserType_Id" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+        </EntityType>
+        <EntityType Name="tb_UserType">
+          <Key>
+            <PropertyRef Name="UserType_Id" />
+          </Key>
+          <Property Type="Int32" Name="UserType_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Is_Active" />
           <Property Type="DateTime" Name="Created_Date" Precision="3" />
           <Property Type="Int32" Name="Created_By" />
@@ -105,6 +161,33 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="News_Id" ColumnName="News_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_User_UserType_Mapping">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_User_UserType_Mapping">
+              <MappingFragment StoreEntitySet="tb_User_UserType_Mapping">
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="UserType_Id" ColumnName="UserType_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="User_UserType_Mapping_Id" ColumnName="User_UserType_Mapping_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_UserType">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_UserType">
+              <MappingFragment StoreEntitySet="tb_UserType">
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserType_Id" ColumnName="UserType_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
