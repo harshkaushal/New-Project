@@ -58,6 +58,9 @@
     <Compile Include="tb_News.cs">
       <DependentUpon>Ekomsys.tt</DependentUpon>
     </Compile>
+    <Compile Include="tb_Users.cs">
+      <DependentUpon>Ekomsys.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

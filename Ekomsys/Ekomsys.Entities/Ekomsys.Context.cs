@@ -12,6 +12,9 @@ namespace Ekomsys.Entities
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class DevSamplesEntities : DbContext
     {
@@ -26,5 +29,19 @@ namespace Ekomsys.Entities
         }
     
         public DbSet<tb_News> tb_News { get; set; }
+        public DbSet<tb_Users> tb_Users { get; set; }
+    
+        public virtual ObjectResult<Nullable<int>> usp_CheckLogin(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_CheckLogin", usernameParameter, passwordParameter);
+        }
     }
 }
