@@ -3861,3 +3861,27 @@
 	.videooverlay .general-title h2 {
 		color:#fff;
 	}
+
+    /*-------------------------------------------------------------*/
+    
+.loginLock {
+background:url("images/loginLock.jpg");
+background-size: 275px 325px;
+height:275px;
+width:325px;
+background-repeat:no-repeat;
+float: right;
+padding-right: 200px;
+padding-bottom:100px;
+}
+
+.ForgotPassword {
+    background:url("images/ForgotPassword.jpg");
+background-size: 275px 325px;
+height:275px;
+width:325px;
+background-repeat:no-repeat;
+float: right;
+padding-right: 200px;
+padding-bottom:100px;
+}
