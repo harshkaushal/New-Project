@@ -51,8 +51,7 @@ namespace Ekomsys.Web.Helpers
         {
             //For<IMenuBAL>().Use<MenuBAL>();
             For<INewsBAL>().Use<NewsBAL>();
-
-            
+            For<IUserManagementBAL>().Use<UserManagementBAL>();
         }
     }
 }

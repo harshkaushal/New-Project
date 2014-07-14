@@ -1,0 +1,48 @@
+﻿@using Ekomsys.Web.Models
+@using Kendo.Mvc.UI
+@using Kendo.Mvc.Extensions;
+@model UserManagementModel
+
+<div width="100%">
+    <div width="30%">
+        <label>User Name</label>
+    </div>
+    <div width="70%">@Html.TextBoxFor(m => m.User_Name, new { @maxlength = "50", @style = "width:98%;height:30px" })</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Email</label>
+    </div>
+    <div width="70%">@Html.TextBoxFor(m => m.Email_Address, new { @maxlength = "50", @style = "width:98%;height:50px" })</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>First Name</label>
+    </div>
+    <div width="70%">@Html.TextBoxFor(m => m.First_Name, new { @maxlength = "50", @style = "width:98%;height:50px" })</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Last Name</label>
+    </div>
+    <div width="70%">@Html.TextBoxFor(m => m.Last_Name, new { @maxlength = "50", @style = "width:98%;height:50px" })</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Phone</label>
+    </div>
+    <div width="70%">@Html.TextBoxFor(m => m.Phone, new { @maxlength = "50", @style = "width:98%;height:50px" })</div>
+</div>
+@*<div width="100%">
+    <div width="30%">
+        <label>Phone</label>
+    </div>
+    <div width="70%">@Html.DropDownList("UserType",Model.UserTypeItems, new { @maxlength = "50", @style = "width:98%;height:50px" })</div>
+</div>*@
+<div width="100%">
+    <div width="30%">
+        <label>Is Active</label>
+    </div>
+    <div width="70%">@Html.CheckBoxFor(m => m.Is_Active)</div>
+</div>
+

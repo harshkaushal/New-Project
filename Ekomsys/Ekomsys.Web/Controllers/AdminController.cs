@@ -21,11 +21,12 @@ namespace Ekomsys.Web.Controllers
         // GET: /Admin/
 
         private readonly INewsBAL _newsBal;
+        private readonly IUserManagementBAL _userBal;
 
-
-        public AdminController(INewsBAL newsBAL)
+        public AdminController(INewsBAL newsBAL, IUserManagementBAL userBal)
         {
             _newsBal = newsBAL;
+            _userBal = userBal;
         }
 
         public ActionResult Index()
@@ -50,38 +51,7 @@ namespace Ekomsys.Web.Controllers
             return this.Json(lst, JsonRequestBehavior.AllowGet);
         }
 
-
-        //[HttpPost]
-        //public ActionResult News(tb_News NewsModel, FormCollection form)
-        //{
-        //    NewsModel.Created_By = 1;
-        //    NewsModel.Modify_By = 1;
-        //    NewsModel.Created_Date = DateTime.UtcNow;
-        //    NewsModel.Modify_Date = DateTime.UtcNow;
-        //    NewsModel.Posted_Date = DateTime.UtcNow;
-
-        //    //NewsModel.Title = Request.Form["title"];
-        //    NewsModel.Is_Active = true;
-        //    _newsBal.AddNews(NewsModel);
-
-        //    return View(_newsBal.GetAllNews());
-        //}
-
-        //public JsonResult Update(tb_News NewsModel)
-        //{
-        //    NewsModel.Modify_Date = DateTime.UtcNow;
-        //    _newsBal.UpdateNews(NewsModel);
-        //    var lst = _newsBal.GetAllNews().ToList();
-        //    return this.Json(lst, JsonRequestBehavior.AllowGet);
-        //}
-
-        //public JsonResult DeleteNews(tb_News NewsModel)
-        //{
-
-        //    _newsBal.DeleteNews(NewsModel.News_Id);
-        //    var lst = _newsBal.GetAllNews().ToList();
-        //    return this.Json(lst, JsonRequestBehavior.AllowGet);
-        //}
+        #region "News Management"
 
         public ActionResult News_Read([DataSourceRequest]DataSourceRequest request)
         {
@@ -138,6 +108,72 @@ namespace Ekomsys.Web.Controllers
             }
 
             return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+        } 
+
+        #endregion
+
+        #region "User Management"
+
+        public ActionResult UserManagement()
+        {
+            return View();
         }
+
+        public ActionResult User_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            return Json(_userBal.GetAllUsers().ToDataSourceResult(request));
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult User_Create([DataSourceRequest] DataSourceRequest request, UserManagementModel model)
+        {
+            if (model != null && ModelState.IsValid)
+            {
+                tb_Users modelUser = new tb_Users();
+                AutoMapper.Mapper.CreateMap<UserManagementModel, tb_Users>();
+                modelUser = AutoMapper.Mapper.Map(model, modelUser);
+                modelUser.Created_By = 1;
+                modelUser.Created_Date = DateTime.Now;
+                modelUser.Modify_By = 1;
+                modelUser.Modify_Date = DateTime.Now;
+                modelUser.Password = "123456";
+                _userBal.AddUser(modelUser);
+            }
+
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult User_Update([DataSourceRequest] DataSourceRequest request, UserManagementModel model)
+        {
+            if (model != null && ModelState.IsValid)
+            {
+                tb_Users modelUser = new tb_Users();
+                AutoMapper.Mapper.CreateMap<UserManagementModel, tb_Users>();
+                modelUser = AutoMapper.Mapper.Map(model, modelUser);
+                modelUser.Modify_By = 1;
+                modelUser.Modify_Date = DateTime.Now;
+                _userBal.UpdateUser(modelUser);
+            }
+
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult User_Destroy([DataSourceRequest] DataSourceRequest request, UserManagementModel model)
+        {
+            if (model != null)
+            {
+                tb_Users modelUser = new tb_Users();
+                AutoMapper.Mapper.CreateMap<UserManagementModel, tb_Users>();
+                modelUser = AutoMapper.Mapper.Map(model, modelUser);
+                _userBal.DeleteUser(modelUser);
+            }
+
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+        }
+
+        #endregion
     }
 }

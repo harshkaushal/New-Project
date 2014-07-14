@@ -1,0 +1,69 @@
+﻿@using Ekomsys.Web.Models
+
+@model List<UserManagementModel>
+@using Kendo.Mvc.UI
+
+@{
+    ViewBag.Title = "UserManagement";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>UserManagement</h2>
+
+@(Html.Kendo().Grid<UserManagementModel>()
+        .Name("kendoGrid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.User_Name).Width(100).Title("User Name");
+            columns.Bound(c => c.Email_Address).Width(200).Title("Email");
+            columns.Bound(c => c.First_Name).Title("First Name");
+            columns.Bound(c => c.Last_Name).Title("Last Name");
+            columns.Bound(c => c.Phone).Title("Phone");
+            columns.Bound(c => c.Password).Visible(false);
+            columns.Bound(c => c.Is_Active);
+            columns.Command(command => { command.Edit().UpdateText("Update"); command.Destroy(); }).Width(100).HtmlAttributes(new { style = "text-align:center;" });
+        })
+        .ToolBar(t => t.Create().Text("Add User"))
+         .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("UserEdit"))
+        .HtmlAttributes(new { style = "height: 380px;" })
+        .Scrollable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax().Events(e => e.RequestEnd("onRequestEnd")).Model(model => model.Id(p => p.User_Id))
+            .Read(read => read.Action("User_Read", "Admin"))
+            .Create(create => create.Action("User_Create", "Admin"))
+          .Update(update => update.Action("User_Update", "Admin"))
+            .Destroy(destroy => destroy.Action("User_Destroy", "Admin"))
+        ).Events(e => e.Edit("setPopupDimensions"))
+    )
+
+
+<script>
+
+    function setPopupDimensions(e) {
+        if (e.model.User_Id != 0) {
+            $(".k-window .k-window-title").text("Add User");
+            $(".k-window .k-grid-update").html("<span class=\"k-icon k-update\"></span>Create");
+        }
+    }
+
+    function onRequestEnd(e) {
+
+        if (e.type == "update" && !e.response.Errors) {
+            alert("Update record is successfull");
+        }
+
+        if (e.type == "create" && !e.response.Errors) {
+            alert("Create record is successfull");
+        }
+
+        if (e.type == "destroy" && !e.response.Errors) {
+            alert("Record deleted successfully");
+        }
+    }
+
+</script>
