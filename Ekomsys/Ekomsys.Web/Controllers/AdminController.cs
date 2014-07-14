@@ -22,6 +22,7 @@ namespace Ekomsys.Web.Controllers
 
         private readonly INewsBAL _newsBal;
 
+
         public AdminController(INewsBAL newsBAL)
         {
             _newsBal = newsBAL;
@@ -32,6 +33,7 @@ namespace Ekomsys.Web.Controllers
             return View();
         }
 
+        [MyAuthorize]
         public ActionResult News()
         {
             var result = _newsBal.GetAllNews();
@@ -49,37 +51,37 @@ namespace Ekomsys.Web.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult News(tb_News NewsModel, FormCollection form)
-        {
-            NewsModel.Created_By = 1;
-            NewsModel.Modify_By = 1;
-            NewsModel.Created_Date = DateTime.UtcNow;
-            NewsModel.Modify_Date = DateTime.UtcNow;
-            NewsModel.Posted_Date = DateTime.UtcNow;
+        //[HttpPost]
+        //public ActionResult News(tb_News NewsModel, FormCollection form)
+        //{
+        //    NewsModel.Created_By = 1;
+        //    NewsModel.Modify_By = 1;
+        //    NewsModel.Created_Date = DateTime.UtcNow;
+        //    NewsModel.Modify_Date = DateTime.UtcNow;
+        //    NewsModel.Posted_Date = DateTime.UtcNow;
 
-            //NewsModel.Title = Request.Form["title"];
-            NewsModel.Is_Active = true;
-            _newsBal.AddNews(NewsModel);
+        //    //NewsModel.Title = Request.Form["title"];
+        //    NewsModel.Is_Active = true;
+        //    _newsBal.AddNews(NewsModel);
 
-            return View(_newsBal.GetAllNews());
-        }
+        //    return View(_newsBal.GetAllNews());
+        //}
 
-        public JsonResult Update(tb_News NewsModel)
-        {
-            NewsModel.Modify_Date = DateTime.UtcNow;
-            _newsBal.UpdateNews(NewsModel);
-            var lst = _newsBal.GetAllNews().ToList();
-            return this.Json(lst, JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult Update(tb_News NewsModel)
+        //{
+        //    NewsModel.Modify_Date = DateTime.UtcNow;
+        //    _newsBal.UpdateNews(NewsModel);
+        //    var lst = _newsBal.GetAllNews().ToList();
+        //    return this.Json(lst, JsonRequestBehavior.AllowGet);
+        //}
 
-        public JsonResult DeleteNews(tb_News NewsModel)
-        {
+        //public JsonResult DeleteNews(tb_News NewsModel)
+        //{
 
-            _newsBal.DeleteNews(NewsModel.News_Id);
-            var lst = _newsBal.GetAllNews().ToList();
-            return this.Json(lst, JsonRequestBehavior.AllowGet);
-        }
+        //    _newsBal.DeleteNews(NewsModel.News_Id);
+        //    var lst = _newsBal.GetAllNews().ToList();
+        //    return this.Json(lst, JsonRequestBehavior.AllowGet);
+        //}
 
         public ActionResult News_Read([DataSourceRequest]DataSourceRequest request)
         {
