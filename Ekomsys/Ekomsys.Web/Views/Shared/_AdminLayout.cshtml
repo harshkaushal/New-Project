@@ -34,20 +34,29 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,300italic,700,700italic,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Exo:400,300,600,500,400italic,700italic,800,900' rel='stylesheet' type='text/css'>
 
+    <link href="@Url.Content("~/Content/kendo.compatibility.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.528/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo.css")" rel="stylesheet" />
         @*<script src='@Url.Content("~/Scripts/jquery-2.1.0.min.js")'></script>*@
 <link href="@Url.Content("~/Content/kendo.compatibility.css")" rel="stylesheet" type="text/css" />
 	<link href="@Url.Content("~/Content/kendo/2014.1.528/kendo.common.min.css")" rel="stylesheet" type="text/css" />
 	 <link href="@Url.Content("~/Content/kendo.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/kendo/2014.1.528/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/Content/kendo/2014.1.528/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.528/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.528/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.528/kendo.all.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.528/kendo.aspnetmvc.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 	<link href="@Url.Content("~/Content/kendo/2014.1.528/kendo.default.min.css")" rel="stylesheet" type="text/css" />
 	<link href="@Url.Content("~/Content/kendo/2014.1.528/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
 	<script src="@Url.Content("~/Content/kendo/js/jquery.min.js")"></script>
 	<script src="@Url.Content("~/Content/kendo/js/kendo.all.min.js")"></script>
 	<script src="@Url.Content("~/Content/kendo/js/kendo.aspnetmvc.min.js")"></script>
 	<script src="@Url.Content("~/Content/kendo/js/kendo.modernizr.custom.js")"></script>
-    
-
-@*    <script src='@Url.Content("~/Scripts/jquery-2.1.0.min.js")'></script>*@
+ 
+    @*    <script src='@Url.Content("~/Scripts/jquery-2.1.0.min.js")'></script>*@
     <script src='@Url.Content("~/Content/js/bootstrap.min.js")'></script>
     <script src='@Url.Content("~/Content/js/menu.js")'></script>
     <script src='@Url.Content("~/Content/js/owl.carousel.min.js")'></script>
@@ -56,9 +65,9 @@
     <script src='@Url.Content("~/Content/js/wow.min.js")'></script>
     <script src='@Url.Content("~/Content/js/jquery.fitvids.js")'></script>
     <script src='@Url.Content("~/Content/js/custom.js")'></script>
-     
 
-@*    <script src='@Url.Content("~/Content/kendo/js/jquery.min.js")'></script>
+
+    @*    <script src='@Url.Content("~/Content/kendo/js/jquery.min.js")'></script>
     <script src='@Url.Content("~/Content/kendo/js/kendo.all.min.js")'></script>*@
 
 
@@ -96,20 +105,26 @@
             </div>
             <!-- end columns -->
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div class="topmenu">
-                    <span class="topbar-login"><i class="fa fa-user"></i><a href="login.html">Login / Register</a></span>
-                    <span class="topbar-cart"><i class="fa fa-shopping-cart"></i><a href="shop-cart.html">0 item - $0.00</a></span>
-                </div>
-                <!-- end top menu -->
-                <div class="callus">
-                    <span class="topbar-email"><i class="fa fa-envelope"></i><a href="mailto:name@yoursite.com">name@yoursite.com</a></span>
-                    <span class="topbar-phone"><i class="fa fa-phone"></i>1-900-324-5467</span>
-                </div>
-                <!-- end callus -->
+                
+                @using (Html.BeginForm("Logout", "Login", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+                }
+                @*<span class="topbar-login"><i class="fa fa-user"></i><a href="login.html">Login / Register</a></span>
+                    <span class="topbar-cart"><i class="fa fa-shopping-cart"></i><a href="shop-cart.html">0 item - $0.00</a></span>*@
             </div>
-            <!-- end columns -->
+            <!-- end top menu -->
+            <div class="callus">
+               @* <span class="topbar-email"><i class="fa fa-envelope"></i><a href="mailto:name@yoursite.com">name@yoursite.com</a></span>*@
+                Hello, @User.Identity.Name
+                <span class="topbar-phone"><i class="fa fa-phone"></i>1-900-324-5467</span>
+            </div>
+            <!-- end callus -->
         </div>
-        <!-- end container -->
+        <!-- end columns -->
+    </div>
+    <!-- end container -->
     </div>
     <!-- end topbar -->
 
