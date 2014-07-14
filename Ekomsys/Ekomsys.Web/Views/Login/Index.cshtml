@@ -1,0 +1,48 @@
+﻿@using Ekomsys.Web.Models
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Index</h2>
+@model UserModel
+<h2>Login</h2>
+
+
+<section id="loginForm">
+@using (Html.BeginForm()) {
+  
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.User_Name)
+                @Html.TextBoxFor(m => m.User_Name)
+                @Html.ValidationMessageFor(m => m.User_Name)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+           
+        </ol>
+        <input type="submit" value="Log in" />
+     
+        @{
+    if (ViewBag.Message != null && ViewBag.Message != "")
+    { 
+    <label style="color: red">@ViewBag.Message</label>
+    }
+}
+    </fieldset>
+   
+}
+</section>
+<div class="loginLock"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
