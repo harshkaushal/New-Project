@@ -29,6 +29,8 @@ namespace Ekomsys.Entities
         }
     
         public DbSet<tb_News> tb_News { get; set; }
+        public DbSet<tb_User_UserType_Mapping> tb_User_UserType_Mapping { get; set; }
+        public DbSet<tb_UserType> tb_UserType { get; set; }
         public DbSet<tb_Users> tb_Users { get; set; }
     
         public virtual ObjectResult<Nullable<int>> usp_CheckLogin(string username, string password)
