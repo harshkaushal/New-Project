@@ -181,12 +181,15 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\HTMLHelpers.cs" />
     <Compile Include="Helper\StructureMap.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\MyAuthorize.cs" />
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\UserManagementModel.cs" />
@@ -393,15 +396,19 @@
     <Content Include="Content\images\arrow%402x.png" />
     <Content Include="Content\images\arrow.png" />
     <Content Include="Content\images\breadcrumb.png" />
+    <Content Include="Content\images\delete.png" />
+    <Content Include="Content\images\edit.png" />
     <Content Include="Content\images\error.gif" />
     <Content Include="Content\images\flexslider_shadow.png" />
     <Content Include="Content\images\flogo%402x.png" />
     <Content Include="Content\images\flogo.png" />
+    <Content Include="Content\images\ForgotPassword.jpg" />
     <Content Include="Content\images\grabbing.png" />
     <Content Include="Content\images\laptop.png" />
     <Content Include="Content\images\light_logo%402x.png" />
     <Content Include="Content\images\light_logo.png" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\loginLock.jpg" />
     <Content Include="Content\images\logo%402x.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo_white.png" />
@@ -2116,6 +2123,8 @@
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Admin\UserManagement.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UserEdit.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\MainSite\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
