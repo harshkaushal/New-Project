@@ -16,8 +16,8 @@
             <PropertyRef Name="News_Id" />
           </Key>
           <Property Name="News_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
           <Property Name="Posted_Date" Type="datetime" />
           <Property Name="Is_Active" Type="bit" />
           <Property Name="Created_Date" Type="datetime" />
@@ -38,19 +38,6 @@
           <Property Name="Modify_Date" Type="datetime" />
           <Property Name="Modify_By" Type="int" />
         </EntityType>
-        <EntityType Name="tb_UserType">
-          <Key>
-            <PropertyRef Name="UserType_Id" />
-          </Key>
-          <Property Name="UserType_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Is_Active" Type="bit" />
-          <Property Name="Created_Date" Type="datetime" />
-          <Property Name="Created_By" Type="int" />
-          <Property Name="Modify_Date" Type="datetime" />
-          <Property Name="Modify_By" Type="int" />
-        </EntityType>
-
         <EntityType Name="tb_Users">
           <Key>
             <PropertyRef Name="User_Id" />
@@ -68,11 +55,23 @@
           <Property Name="Modify_Date" Type="datetime" />
           <Property Name="Modify_By" Type="int" />
         </EntityType>
+        <EntityType Name="tb_UserType">
+          <Key>
+            <PropertyRef Name="UserType_Id" />
+          </Key>
+          <Property Name="UserType_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
+        </EntityType>
         <Function Name="usp_CheckLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
-
+        <Function Name="usp_getOfficeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -86,6 +85,7 @@
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="usp_getOfficeDetails" ReturnType="Collection(EkomsysModel.usp_getOfficeDetails_Result)" />
         </EntityContainer>
         <EntityType Name="tb_News">
           <Key>
@@ -143,6 +143,18 @@
           <Property Type="DateTime" Name="Modify_Date" Precision="3" />
           <Property Type="Int32" Name="Modify_By" />
         </EntityType>
+        <ComplexType Name="usp_getOfficeDetails_Result">
+          <Property Type="Int32" Name="Office_Detail_Id" Nullable="false" />
+          <Property Type="String" Name="Address_Line1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address_Line2" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Country_Id" Nullable="true" />
+          <Property Type="Int32" Name="City_Id" Nullable="true" />
+          <Property Type="String" Name="Email_Address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -210,6 +222,22 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_CheckLogin" FunctionName="EkomsysModel.Store.usp_CheckLogin" />
+          <FunctionImportMapping FunctionImportName="usp_getOfficeDetails" FunctionName="EkomsysModel.Store.usp_getOfficeDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EkomsysModel.usp_getOfficeDetails_Result">
+                <ScalarProperty Name="Office_Detail_Id" ColumnName="Office_Detail_Id" />
+                <ScalarProperty Name="Address_Line1" ColumnName="Address_Line1" />
+                <ScalarProperty Name="Address_Line2" ColumnName="Address_Line2" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

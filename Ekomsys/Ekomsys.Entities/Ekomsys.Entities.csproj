@@ -67,6 +67,9 @@
     <Compile Include="tb_User_UserType_Mapping.cs">
       <DependentUpon>Ekomsys.tt</DependentUpon>
     </Compile>
+    <Compile Include="usp_getOfficeDetails_Result.cs">
+      <DependentUpon>Ekomsys.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

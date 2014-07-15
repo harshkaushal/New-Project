@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ContactRepository.cs" />
     <Compile Include="Classes\ContextManager.cs" />
     <Compile Include="Classes\RepositoryBase.cs" />
     <Compile Include="Classes\NewsRepositoryClasses.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Classes\UserManagementRepository.cs" />
     <Compile Include="Classes\UserRepository.cs" />
+    <Compile Include="Classes\UserTypeRepository.cs" />
     <Compile Include="Edmx\Ekomsys.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

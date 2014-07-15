@@ -45,5 +45,10 @@ namespace Ekomsys.Entities
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_CheckLogin", usernameParameter, passwordParameter);
         }
+    
+        public virtual ObjectResult<usp_getOfficeDetails_Result> usp_getOfficeDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_getOfficeDetails_Result>("usp_getOfficeDetails");
+        }
     }
 }
