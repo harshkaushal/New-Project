@@ -17,5 +17,19 @@ namespace Ekomsys.Business.Classes
             _repository = new ContactRepository();
             return _repository.GetOfficeDetails();
         }
+
+        public bool AddContact(tb_Contact contact)
+        {
+            try
+            {
+                _repository = new ContactRepository();
+                _repository.Add(contact);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

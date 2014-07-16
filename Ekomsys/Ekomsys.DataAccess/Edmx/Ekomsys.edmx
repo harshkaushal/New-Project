@@ -6,11 +6,28 @@
     <edmx:StorageModels>
     <Schema Namespace="EkomsysModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="EkomsysModelStoreContainer">
+          <EntitySet Name="tb_Contact" EntityType="EkomsysModel.Store.tb_Contact" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_News" EntityType="EkomsysModel.Store.tb_News" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_User_UserType_Mapping" EntityType="EkomsysModel.Store.tb_User_UserType_Mapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_Users" EntityType="EkomsysModel.Store.tb_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_UserType" EntityType="EkomsysModel.Store.tb_UserType" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="tb_Contact">
+          <Key>
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Name="Contact_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email_Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="150" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="tb_News">
           <Key>
             <PropertyRef Name="News_Id" />
@@ -86,6 +103,7 @@
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_getOfficeDetails" ReturnType="Collection(EkomsysModel.usp_getOfficeDetails_Result)" />
+          <EntitySet Name="tb_Contact" EntityType="EkomsysModel.tb_Contact" />
         </EntityContainer>
         <EntityType Name="tb_News">
           <Key>
@@ -155,6 +173,22 @@
           <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
           </ComplexType>
+        <EntityType Name="tb_Contact">
+          <Key>
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Type="Int32" Name="Contact_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email_Address" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comment" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+          <Property Type="String" Name="Subject" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -238,6 +272,23 @@
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="tb_Contact">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_Contact">
+              <MappingFragment StoreEntitySet="tb_Contact">
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

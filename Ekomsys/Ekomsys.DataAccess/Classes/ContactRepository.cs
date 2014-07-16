@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ekomsys.DataAccess.Classes
 {
-    public class ContactRepository : RepositoryBase<usp_getOfficeDetails_Result>
+    public class ContactRepository : RepositoryBase<tb_Contact>
     {
 
         public usp_getOfficeDetails_Result GetOfficeDetails()
@@ -18,5 +18,6 @@ namespace Ekomsys.DataAccess.Classes
             }
 
         }
+
     }
 }

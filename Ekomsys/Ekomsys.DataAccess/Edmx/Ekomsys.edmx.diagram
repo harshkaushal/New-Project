@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="EkomsysModel.tb_User_UserType_Mapping" Width="1.5" PointX="7.387060664308752" PointY="8.9067471366872759" />
         <EntityTypeShape EntityType="EkomsysModel.tb_Users" Width="1.5" PointX="1.9254278102542402" PointY="13.007460346914577" />
         <EntityTypeShape EntityType="EkomsysModel.tb_UserType" Width="1.5" PointX="11.712842060119305" PointY="26.626355824352409" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_Contact" Width="1.5" PointX="8.881472321637661" PointY="19.494479933518207" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
