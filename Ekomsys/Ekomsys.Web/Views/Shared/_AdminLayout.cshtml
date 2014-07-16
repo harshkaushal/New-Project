@@ -4,7 +4,7 @@
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <title>Jollyany - Multi-Purpose Business Website Template</title>
+    <title>Ekomsys - Admin</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -90,8 +90,8 @@
 
 
     <div id="topbar" class="clearfix">
-        <div class="container">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+       @*   <div class="container">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="social-icons">
                     <span><a data-toggle="tooltip" data-placement="bottom" title="Facebook" href="javascript:void(0);"><i class="fa fa-facebook"></i></a></span>
                     <span><a data-toggle="tooltip" data-placement="bottom" title="Google Plus" href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></span>
@@ -102,7 +102,7 @@
                     <span class="last"><a data-toggle="tooltip" data-placement="bottom" title="Skype" href="javascript:void(0);"><i class="fa fa-skype"></i></a></span>
                 </div>
                 <!-- end social icons -->
-            </div>
+            </div>*@
             <!-- end columns -->
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 
@@ -137,7 +137,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand">Ekomsys</a>
+                    <a href='@Url.Content("~/Admin/News")' class="navbar-brand">Ekomsys</a>
                 </div>
                 <!-- end navbar-header -->
 
@@ -282,7 +282,7 @@
                         <!-- end drop down -->
 
                         <!-- standard drop down -->
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href='@Url.Content("~/MainSite/Contact")'>Contact</a></li>
                     </ul>
                     <!-- end navbar-nav -->
                 </div>

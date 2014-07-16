@@ -1,6 +1,8 @@
 ﻿@using Ekomsys.Web.Models
 @using Kendo.Mvc.UI
 @using Kendo.Mvc.Extensions;
+@using Ekomsys.Web.Helpers;
+
 @model UserManagementModel
 
 <div width="100%">
@@ -37,7 +39,7 @@
     <div width="30%">
         <label>Phone</label>
     </div>
-    <div width="70%">@Html.DropDownList("UserType",Model.UserTypeItems, new { @maxlength = "50", @style = "width:98%;height:50px" })</div>
+    <div width="70%">@HtmlHelpers.DropDownList(DropDownList,"myname","Please Select", new { @style = "width:98%;height:50px;" },Ekomsys.Common.Enums.Enumurations.DropdownType);</div>
 </div>*@
 <div width="100%">
     <div width="30%">

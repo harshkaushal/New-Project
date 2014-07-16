@@ -28,11 +28,29 @@ namespace Ekomsys.Web.Controllers
 
         public ActionResult Contact()
         {
-            AutoMapper.Mapper.CreateMap<usp_getOfficeDetails_Result, ContactModel>();
+            AutoMapper.Mapper.CreateMap<usp_getOfficeDetails_Result, OfficeDetailModel>();
             var _details = _contactBal.GetContactDetail();
-            ContactModel _model = new ContactModel();
-            _model = AutoMapper.Mapper.Map(_details, _model);
-            return View(_model);
+            OfficeDetailModel _officeModel = new OfficeDetailModel();
+            _officeModel = AutoMapper.Mapper.Map(_details, _officeModel);
+            ContactModel contactModel = new ContactModel();
+            contactModel.OfficeDetail = _officeModel;
+            return View(contactModel);
+        }
+
+        [HttpPost]
+        public ActionResult Contact(ContactModel contactModel)
+        {
+            tb_Contact dbContact = new tb_Contact();
+            contactModel.Modify_By = 1;
+            contactModel.Modify_Date = DateTime.UtcNow;
+            contactModel.Created_By = 1;
+            contactModel.Created_Date = DateTime.UtcNow;
+            contactModel.Is_Active = true;
+
+            AutoMapper.Mapper.CreateMap<ContactModel, tb_Contact>();
+            dbContact = AutoMapper.Mapper.Map(contactModel, dbContact);
+            _contactBal.AddContact(dbContact);
+            return View();
         }
 
     }
