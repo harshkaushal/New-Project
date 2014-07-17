@@ -8,6 +8,7 @@
         <EntityContainer Name="EkomsysModelStoreContainer">
           <EntitySet Name="tb_Contact" EntityType="EkomsysModel.Store.tb_Contact" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_News" EntityType="EkomsysModel.Store.tb_News" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_Page" EntityType="EkomsysModel.Store.tb_Page" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_User_UserType_Mapping" EntityType="EkomsysModel.Store.tb_User_UserType_Mapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_Users" EntityType="EkomsysModel.Store.tb_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_UserType" EntityType="EkomsysModel.Store.tb_UserType" store:Type="Tables" Schema="dbo" />
@@ -36,6 +37,20 @@
           <Property Name="Title" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" />
           <Property Name="Posted_Date" Type="datetime" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_Page">
+          <Key>
+            <PropertyRef Name="Page_Id" />
+          </Key>
+          <Property Name="Page_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Page_Content" Type="nvarchar" />
+          <Property Name="Parent_Page_Id" Type="int" />
           <Property Name="Is_Active" Type="bit" />
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Created_By" Type="int" />
@@ -88,6 +103,7 @@
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="usp_GetAllPages_SubPages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_getOfficeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -104,6 +120,8 @@
           </FunctionImport>
           <FunctionImport Name="usp_getOfficeDetails" ReturnType="Collection(EkomsysModel.usp_getOfficeDetails_Result)" />
           <EntitySet Name="tb_Contact" EntityType="EkomsysModel.tb_Contact" />
+          <EntitySet Name="tb_Page" EntityType="EkomsysModel.tb_Page" />
+          <FunctionImport Name="usp_GetAllPages_SubPages" ReturnType="Collection(EkomsysModel.usp_GetAllPages_SubPages_Result)" />
         </EntityContainer>
         <EntityType Name="tb_News">
           <Key>
@@ -189,6 +207,27 @@
           <Property Type="Int32" Name="Modify_By" />
           <Property Type="String" Name="Subject" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tb_Page">
+          <Key>
+            <PropertyRef Name="Page_Id" />
+          </Key>
+          <Property Type="Int32" Name="Page_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Page_Content" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Parent_Page_Id" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+        </EntityType>
+        <ComplexType Name="usp_GetAllPages_SubPages_Result">
+          <Property Type="Int32" Name="Page_Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Parent_Page_Id" Nullable="false" />
+          <Property Type="String" Name="Page_Content" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="Child_Pages" Nullable="true" MaxLength="1000" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -289,6 +328,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tb_Page">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_Page">
+              <MappingFragment StoreEntitySet="tb_Page">
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Parent_Page_Id" ColumnName="Parent_Page_Id" />
+                <ScalarProperty Name="Page_Content" ColumnName="Page_Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Page_Id" ColumnName="Page_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetAllPages_SubPages" FunctionName="EkomsysModel.Store.usp_GetAllPages_SubPages">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EkomsysModel.usp_GetAllPages_SubPages_Result">
+                <ScalarProperty Name="Page_Id" ColumnName="Page_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Parent_Page_Id" ColumnName="Parent_Page_Id" />
+                <ScalarProperty Name="Page_Content" ColumnName="Page_Content" />
+                <ScalarProperty Name="Child_Pages" ColumnName="Child_Pages" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

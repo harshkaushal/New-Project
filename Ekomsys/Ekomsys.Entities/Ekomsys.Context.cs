@@ -33,6 +33,7 @@ namespace Ekomsys.Entities
         public DbSet<tb_UserType> tb_UserType { get; set; }
         public DbSet<tb_Users> tb_Users { get; set; }
         public DbSet<tb_Contact> tb_Contact { get; set; }
+        public DbSet<tb_Page> tb_Page { get; set; }
     
         public virtual ObjectResult<Nullable<int>> usp_CheckLogin(string username, string password)
         {
@@ -50,6 +51,11 @@ namespace Ekomsys.Entities
         public virtual ObjectResult<usp_getOfficeDetails_Result> usp_getOfficeDetails()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_getOfficeDetails_Result>("usp_getOfficeDetails");
+        }
+    
+        public virtual ObjectResult<usp_GetAllPages_SubPages_Result> usp_GetAllPages_SubPages()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetAllPages_SubPages_Result>("usp_GetAllPages_SubPages");
         }
     }
 }

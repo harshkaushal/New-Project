@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Classes\ContactRepository.cs" />
     <Compile Include="Classes\ContextManager.cs" />
+    <Compile Include="Classes\PagesRepository.cs" />
     <Compile Include="Classes\RepositoryBase.cs" />
     <Compile Include="Classes\NewsRepositoryClasses.cs" />
     <Compile Include="Classes\RepositoryContext.cs" />
