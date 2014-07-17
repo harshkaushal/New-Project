@@ -16,15 +16,48 @@ namespace Ekomsys.Web.Controllers
         // GET: /MainSite/
 
         private readonly IContactBAL _contactBal;
-        public MainSiteController(IContactBAL contactBal)
+        private readonly IPagesBAL _pageBal;
+        public MainSiteController(IContactBAL contactBal, IPagesBAL pageBal)
         {
             _contactBal = contactBal;
+            _pageBal = pageBal;
         }
 
         public ActionResult Index()
         {
             return View();
         }
+
+        #region "Home Section"
+
+        public ActionResult Home()
+        {
+            List<PagesModel> pageModel = new List<PagesModel>();
+            var result = _pageBal.GetAllPages_SubPages();
+            AutoMapper.Mapper.CreateMap<usp_GetAllPages_SubPages_Result, PagesModel>();
+            pageModel = AutoMapper.Mapper.Map(result, pageModel);
+            return View(pageModel);
+        }
+
+        [HttpGet]
+        public ActionResult LoadPageMenu()
+        {
+            List<PagesModel> pageModel = new List<PagesModel>();
+            var result = _pageBal.GetAllPages_SubPages();
+            AutoMapper.Mapper.CreateMap<usp_GetAllPages_SubPages_Result, PagesModel>();
+            pageModel = AutoMapper.Mapper.Map(result, pageModel);
+            return PartialView("_PageMenu", pageModel);
+        }
+
+        [HttpPost]
+        public string LoadPageContent(int pageId)
+        {
+            return _pageBal.GetPageContent(pageId);
+        }
+
+        #endregion
+
+        #region "Contact Section"
 
         public ActionResult Contact()
         {
@@ -52,6 +85,8 @@ namespace Ekomsys.Web.Controllers
             _contactBal.AddContact(dbContact);
             return View();
         }
+
+        #endregion
 
     }
 }

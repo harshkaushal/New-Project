@@ -22,11 +22,13 @@ namespace Ekomsys.Web.Controllers
 
         private readonly INewsBAL _newsBal;
         private readonly IUserManagementBAL _userBal;
+        private readonly IUserTypeBAL _userTypeBal;
 
-        public AdminController(INewsBAL newsBAL, IUserManagementBAL userBal)
+        public AdminController(INewsBAL newsBAL, IUserManagementBAL userBal,IUserTypeBAL userTypeBal)
         {
             _newsBal = newsBAL;
             _userBal = userBal;
+            _userTypeBal = userTypeBal;
         }
 
         public ActionResult Index()
@@ -116,11 +118,13 @@ namespace Ekomsys.Web.Controllers
 
         public ActionResult UserManagement()
         {
+            ViewData["AllUserType"] = new SelectList(_userTypeBal.GetAllUserType(), "UserType_Id", "Name"); ;
             return View();
         }
 
         public ActionResult User_Read([DataSourceRequest]DataSourceRequest request)
         {
+            ViewData["AllUserType"] = new SelectList(_userTypeBal.GetAllUserType(), "UserType_Id", "Name"); ;
             return Json(_userBal.GetAllUsers().ToDataSourceResult(request));
         }
 

@@ -25,6 +25,8 @@ namespace Ekomsys.Web.Models
         public Nullable<int> Modify_By { get; set; }
         public string UserType { get; set; }
         public int UserType_Id {get;set;}
+        public IList<UserTypeModel> userTypeList { get; set; }
+
         public List<UserTypeUserMapModel> UserTypeUserMapList { get; set; }
 
         public IEnumerable<SelectListItem> UserTypeItems { get; set; }

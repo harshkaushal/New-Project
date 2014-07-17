@@ -35,12 +35,12 @@
     </div>
     <div width="70%">@Html.TextBoxFor(m => m.Phone, new { @maxlength = "50", @style = "width:98%;height:50px" })</div>
 </div>
-@*<div width="100%">
+<div width="100%">
     <div width="30%">
-        <label>Phone</label>
+        <label>User Type</label>
     </div>
-    <div width="70%">@HtmlHelpers.DropDownList(DropDownList,"myname","Please Select", new { @style = "width:98%;height:50px;" },Ekomsys.Common.Enums.Enumurations.DropdownType);</div>
-</div>*@
+    <div width="70%">@Html.DropDownList("UserTypeItems",(IEnumerable<SelectListItem>)ViewData["AllUserType"],new {@style = "width:98%;height:50px" });</div>
+</div>
 <div width="100%">
     <div width="30%">
         <label>Is Active</label>

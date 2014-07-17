@@ -1,0 +1,34 @@
+﻿@using Ekomsys.Web.Models
+
+@model List<PagesModel>
+
+@foreach (var item in Model)
+{
+    <li class="dropdown yamm-fw">
+        <a href="javascript:void(0);" data-toggle="dropdown" class="dropdown-toggle jQPageMenu" tagpageid="@item.Page_Id">
+            @item.Name
+    <div class="arrow-up"></div>
+        </a>
+    <ul class="dropdown-menu">
+        <li>
+            <div class="yamm-content">
+                <div class="row">
+                    <ul class="col-sm-3">
+                      @if (item.Child_Pages.Split('^').Length > 1)
+                      {
+                          foreach (var subitem in item.Child_Pages.Split('^'))
+                          {
+                          <li><a href="javascript:void(0);" class="jQPageMenu" tagpageid="@subitem.Split('~')[0]">@subitem.Split('~')[1]</a></li>
+                          }
+                      }
+                    </ul>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end yamm-content -->
+        </li>
+    </ul>
+    <!-- end drop down menu -->
+</li>
+<!-- end drop down -->
+}

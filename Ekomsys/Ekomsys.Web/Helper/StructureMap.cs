@@ -53,6 +53,8 @@ namespace Ekomsys.Web.Helpers
             For<INewsBAL>().Use<NewsBAL>();
             For<IUserManagementBAL>().Use<UserManagementBAL>();
             For<IContactBAL>().Use<ContactBAL>();
+            For<IUserTypeBAL>().Use<UserTypeBAL>();
+            For<IPagesBAL>().Use<PagesBAL>();
         }
     }
 }

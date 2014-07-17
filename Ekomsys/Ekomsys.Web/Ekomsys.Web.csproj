@@ -192,6 +192,7 @@
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\MyAuthorize.cs" />
     <Compile Include="Models\NewsModel.cs" />
+    <Compile Include="Models\PagesModel.cs" />
     <Compile Include="Models\UserManagementModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2044,6 +2045,7 @@
     <Content Include="Content\kendo\web\48x48\Thumbs.db" />
     <Content Include="Content\kendo\web\datasource\internet-users.json" />
     <Content Include="Content\kendo\web\datasource\top250movies.json" />
+    <Content Include="Scripts\Home\Home.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Content\kendo\2014.1.528\images\kendoui.ttf" />
@@ -2125,6 +2127,8 @@
     <Content Include="Views\Shared\EditorTemplates\UserEdit.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\MainSite\Contact.cshtml" />
+    <Content Include="Views\MainSite\Home.cshtml" />
+    <Content Include="Views\MainSite\_PageMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
