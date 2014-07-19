@@ -1,0 +1,53 @@
+﻿@using Ekomsys.Web.Models
+@using Kendo.Mvc.UI
+@using Kendo.Mvc.Extensions;
+@model PagesModel
+
+<div width="100%">
+    <div width="30%">
+        <label>Page Name</label>
+    </div>
+    <div width="70%">@Html.TextBoxFor(m => m.Name, new { @maxlength = "200", @style = "width:98%;height:30px" })</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Content</label>
+    </div>
+    <div width="70%">@(Html.Kendo().EditorFor(m => m.Page_Content)
+      .HtmlAttributes(new { style = "width: 1040px;height:340px" }).ImageBrowser(imageBrowser => imageBrowser
+    .Image("~/Content/UserFiles/Images/{0}")
+    .Read("Read", "ImageBrowser")
+    .Create("Create", "ImageBrowser")
+    .Destroy("Destroy", "ImageBrowser")
+    .Upload("Upload", "ImageBrowser")
+    .Thumbnail("Thumbnail", "ImageBrowser"))
+
+)
+    </div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Is Active</label>
+    </div>
+    <div width="70%">@Html.CheckBoxFor(m => m.Is_Active)</div>
+</div>
+<div width="100%">
+    <div width="30%">
+        <label>Parent Page</label>
+    </div>
+    <div width="70%">
+
+        @{
+            PagesModel _PagesModel=new PagesModel();
+        @(Html.Kendo().DropDownListFor(m=>m.Parent_Page_Id)
+    //.Name("Employee") // Name of the widget should be the same as the name of the property
+    .DataValueField("Page_Id") // The value of the dropdown is taken from the EmployeeID property
+    .DataTextField("Name") // The text of the items is taken from the EmployeeName property
+    .BindTo((System.Collections.IEnumerable)Ekomsys.Web.Controllers.AdminController.bindPageDrop()) // A list of all employees which is populated in the controller
+)}
+      
+    </div>
+</div>
+
+
+
