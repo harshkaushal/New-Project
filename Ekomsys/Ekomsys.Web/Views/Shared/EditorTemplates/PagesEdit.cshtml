@@ -14,7 +14,7 @@
         <label>Content</label>
     </div>
     <div width="70%">@(Html.Kendo().EditorFor(m => m.Page_Content)
-      .HtmlAttributes(new { style = "width: 1040px;height:340px" }).ImageBrowser(imageBrowser => imageBrowser
+      .HtmlAttributes(new { style = "width: 99%;height:340px" }).ImageBrowser(imageBrowser => imageBrowser
     .Image("~/Content/UserFiles/Images/{0}")
     .Read("Read", "ImageBrowser")
     .Create("Create", "ImageBrowser")
@@ -37,7 +37,10 @@
     </div>
     <div width="70%">
 
-        @{
+        
+
+        @Html.DropDownList("Parent_Page_Id",(IEnumerable<SelectListItem>)ViewData["PagesList"]);
+        @*@{
             PagesModel _PagesModel=new PagesModel();
         @(Html.Kendo().DropDownListFor(m=>m.Parent_Page_Id)
     //.Name("Employee") // Name of the widget should be the same as the name of the property
@@ -45,7 +48,7 @@
     .DataTextField("Name") // The text of the items is taken from the EmployeeName property
     .BindTo((System.Collections.IEnumerable)Ekomsys.Web.Controllers.AdminController.bindPageDrop()) // A list of all employees which is populated in the controller
 )}
-      
+      *@
     </div>
 </div>
 
