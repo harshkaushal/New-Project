@@ -21,13 +21,16 @@ namespace Ekomsys.Web.Controllers
         // GET: /Admin/
 
         private readonly INewsBAL _newsBal;
+        private readonly IPagesBAL _pagesBal;
         private readonly IUserManagementBAL _userBal;
         private readonly IUserTypeBAL _userTypeBal;
 
-        public AdminController(INewsBAL newsBAL, IUserManagementBAL userBal,IUserTypeBAL userTypeBal)
+
+        public AdminController(INewsBAL newsBAL, IUserManagementBAL userBal,IUserTypeBAL userTypeBal, IPagesBAL pagesBAL)
         {
             _newsBal = newsBAL;
             _userBal = userBal;
+            _pagesBal = pagesBAL;
             _userTypeBal = userTypeBal;
         }
 
@@ -110,7 +113,7 @@ namespace Ekomsys.Web.Controllers
             }
 
             return Json(new[] { model }.ToDataSourceResult(request, ModelState));
-        } 
+        }
 
         #endregion
 
@@ -178,6 +181,85 @@ namespace Ekomsys.Web.Controllers
             return Json(new[] { model }.ToDataSourceResult(request, ModelState));
         }
 
+        #endregion
+
+
+        #region Pages
+        public ActionResult Pages()
+        {
+            PagesModel model = new PagesModel();
+            List<tb_Page> pageList = _pagesBal.GetAllPages().Where(a => a.Parent_Page_Id == null).ToList();
+
+            model.Pages = pageList;// pageList.Select(x => new SelectListItem { Text = x.Name, Value = x.Page_Id.ToString() }).ToList();
+            ViewBag.PagesDrop = pageList.Select(x => new SelectListItem { Text = x.Name, Value = x.Page_Id.ToString() });
+            return View(model);
+        }
+        public static List<tb_Page> bindPageDrop()
+        {
+            PagesBAL _pagesBal=new PagesBAL()  ;
+            List<tb_Page> pageList = _pagesBal.GetAllPages().Where(a => a.Parent_Page_Id == null).ToList();
+            return pageList;
+        }
+        public ActionResult Pages_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            return Json(_pagesBal.GetAllPages().ToDataSourceResult(request));
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Pages_Create([DataSourceRequest] DataSourceRequest request, PagesModel model)
+        {
+            if (model != null && ModelState.IsValid)
+            {
+                tb_Page modelNew = new tb_Page();
+                AutoMapper.Mapper.CreateMap<PagesModel, tb_Page>();
+                modelNew = AutoMapper.Mapper.Map(model, modelNew);
+                modelNew.Page_Content = model.Page_Content;
+                //modelNew.Parent_Page_Id = 0;
+                modelNew.Name = model.Name;
+                modelNew.Created_By = 1;
+                modelNew.Created_Date = DateTime.Now;
+                modelNew.Modify_By = 1;
+                modelNew.Modify_Date = DateTime.Now;
+                _pagesBal.AddPages(modelNew);
+            }
+
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Pages_Update([DataSourceRequest] DataSourceRequest request, PagesModel model)
+        {
+            if (model != null && ModelState.IsValid)
+            {
+                tb_Page modelNew = new tb_Page();
+                AutoMapper.Mapper.CreateMap<PagesModel, tb_Page>();
+                modelNew = AutoMapper.Mapper.Map(model, modelNew);
+                modelNew.Modify_By = 1;
+                modelNew.Modify_Date = DateTime.Now;
+                _pagesBal.UpdatePages(modelNew);
+            }
+
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Pages_Destroy([DataSourceRequest] DataSourceRequest request, PagesModel model)
+        {
+            if (model != null)
+            {
+                tb_Page modelNew = new tb_Page();
+                AutoMapper.Mapper.CreateMap<PagesModel, tb_Page>();
+                modelNew = AutoMapper.Mapper.Map(model, modelNew);
+                _pagesBal.DeletePages(modelNew.Page_Id);
+            }
+
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+        }
+        public ActionResult ImageBrowser()
+        {
+            return View();
+        }
         #endregion
     }
 }
