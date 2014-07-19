@@ -51,5 +51,13 @@ namespace Ekomsys.DataAccess.Classes
                 return dbList;
             }
         }
+        public List<usp_GetAllPages_SubPages_Result> GelAllPages_SubPages()
+        {
+            using (DevSamplesEntities _dbEntity = new DevSamplesEntities())
+            {
+                return _dbEntity.usp_GetAllPages_SubPages().ToList();
+            }
+        }
+
     }
 }

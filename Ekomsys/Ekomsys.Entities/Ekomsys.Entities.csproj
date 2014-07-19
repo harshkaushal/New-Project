@@ -64,6 +64,12 @@
     <Compile Include="tb_Page.cs">
       <DependentUpon>Ekomsys.tt</DependentUpon>
     </Compile>
+    <Compile Include="tb_SDK_Detail.cs">
+      <DependentUpon>Ekomsys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_Support.cs">
+      <DependentUpon>Ekomsys.tt</DependentUpon>
+    </Compile>
     <Compile Include="tb_Users.cs">
       <DependentUpon>Ekomsys.tt</DependentUpon>
     </Compile>

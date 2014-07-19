@@ -13,5 +13,7 @@ namespace Ekomsys.Business.Interfaces
         List<tb_Page> GetAllPages();
         void UpdatePages(tb_Page pagesModel);
         void DeletePages(int id);
+        List<usp_GetAllPages_SubPages_Result> GetAllPages_SubPages();
+        string GetPageContent(int pageId);
     }
 }

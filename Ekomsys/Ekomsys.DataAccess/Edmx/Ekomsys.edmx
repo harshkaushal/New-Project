@@ -9,6 +9,8 @@
           <EntitySet Name="tb_Contact" EntityType="EkomsysModel.Store.tb_Contact" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_News" EntityType="EkomsysModel.Store.tb_News" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_Page" EntityType="EkomsysModel.Store.tb_Page" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_SDK_Detail" EntityType="EkomsysModel.Store.tb_SDK_Detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tb_Support" EntityType="EkomsysModel.Store.tb_Support" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_User_UserType_Mapping" EntityType="EkomsysModel.Store.tb_User_UserType_Mapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_Users" EntityType="EkomsysModel.Store.tb_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tb_UserType" EntityType="EkomsysModel.Store.tb_UserType" store:Type="Tables" Schema="dbo" />
@@ -51,6 +53,35 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Page_Content" Type="nvarchar" />
           <Property Name="Parent_Page_Id" Type="int" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_SDK_Detail">
+          <Key>
+            <PropertyRef Name="SDK_Id" />
+          </Key>
+          <Property Name="SDK_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SDK_Version_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="Download_Link" Type="nvarchar" MaxLength="200" />
+          <Property Name="Is_Active" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Modify_Date" Type="datetime" />
+          <Property Name="Modify_By" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_Support">
+          <Key>
+            <PropertyRef Name="Support_Id" />
+          </Key>
+          <Property Name="Support_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="Duration" Type="decimal" />
+          <Property Name="Frequency" Type="int" />
+          <Property Name="Amount" Type="decimal" />
           <Property Name="Is_Active" Type="bit" />
           <Property Name="Created_Date" Type="datetime" />
           <Property Name="Created_By" Type="int" />
@@ -110,19 +141,56 @@
     <edmx:ConceptualModels>
       <Schema Namespace="EkomsysModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DevSamplesEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="tb_News" EntityType="EkomsysModel.tb_News" />
-          <EntitySet Name="tb_User_UserType_Mapping" EntityType="EkomsysModel.tb_User_UserType_Mapping" />
-          <EntitySet Name="tb_UserType" EntityType="EkomsysModel.tb_UserType" />
-          <EntitySet Name="tb_Users" EntityType="EkomsysModel.tb_Users" />
           <FunctionImport Name="usp_CheckLogin" ReturnType="Collection(Int32)">
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_getOfficeDetails" ReturnType="Collection(EkomsysModel.usp_getOfficeDetails_Result)" />
-          <EntitySet Name="tb_Contact" EntityType="EkomsysModel.tb_Contact" />
-          <EntitySet Name="tb_Page" EntityType="EkomsysModel.tb_Page" />
           <FunctionImport Name="usp_GetAllPages_SubPages" ReturnType="Collection(EkomsysModel.usp_GetAllPages_SubPages_Result)" />
+          <EntitySet Name="tb_Contact" EntityType="EkomsysModel.tb_Contact" />
+          <EntitySet Name="tb_News" EntityType="EkomsysModel.tb_News" />
+          <EntitySet Name="tb_Page" EntityType="EkomsysModel.tb_Page" />
+          <EntitySet Name="tb_SDK_Detail" EntityType="EkomsysModel.tb_SDK_Detail" />
+          <EntitySet Name="tb_Support" EntityType="EkomsysModel.tb_Support" />
+          <EntitySet Name="tb_User_UserType_Mapping" EntityType="EkomsysModel.tb_User_UserType_Mapping" />
+          <EntitySet Name="tb_Users" EntityType="EkomsysModel.tb_Users" />
+          <EntitySet Name="tb_UserType" EntityType="EkomsysModel.tb_UserType" />
         </EntityContainer>
+        <ComplexType Name="usp_getOfficeDetails_Result">
+          <Property Type="Int32" Name="Office_Detail_Id" Nullable="false" />
+          <Property Type="String" Name="Address_Line1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address_Line2" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Country_Id" Nullable="true" />
+          <Property Type="Int32" Name="City_Id" Nullable="true" />
+          <Property Type="String" Name="Email_Address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          </ComplexType>
+        <ComplexType Name="usp_GetAllPages_SubPages_Result">
+          <Property Type="Int32" Name="Page_Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Parent_Page_Id" Nullable="false" />
+          <Property Type="String" Name="Page_Content" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="Child_Pages" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <EntityType Name="tb_Contact">
+          <Key>
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Type="Int32" Name="Contact_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email_Address" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comment" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+          <Property Type="String" Name="Subject" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tb_News">
           <Key>
             <PropertyRef Name="News_Id" />
@@ -137,6 +205,49 @@
           <Property Type="DateTime" Name="Modify_Date" Precision="3" />
           <Property Type="Int32" Name="Modify_By" />
         </EntityType>
+        <EntityType Name="tb_Page">
+          <Key>
+            <PropertyRef Name="Page_Id" />
+          </Key>
+          <Property Type="Int32" Name="Page_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Page_Content" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Parent_Page_Id" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+        </EntityType>
+        <EntityType Name="tb_SDK_Detail">
+          <Key>
+            <PropertyRef Name="SDK_Id" />
+          </Key>
+          <Property Type="Int32" Name="SDK_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SDK_Version_Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Product_Id" />
+          <Property Type="String" Name="Download_Link" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+        </EntityType>
+        <EntityType Name="tb_Support">
+          <Key>
+            <PropertyRef Name="Support_Id" />
+          </Key>
+          <Property Type="Int32" Name="Support_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Product_Id" />
+          <Property Type="Decimal" Name="Duration" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Frequency" />
+          <Property Type="Decimal" Name="Amount" Precision="18" Scale="0" />
+          <Property Type="Boolean" Name="Is_Active" />
+          <Property Type="DateTime" Name="Created_Date" Precision="3" />
+          <Property Type="Int32" Name="Created_By" />
+          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
+          <Property Type="Int32" Name="Modify_By" />
+        </EntityType>
         <EntityType Name="tb_User_UserType_Mapping">
           <Key>
             <PropertyRef Name="User_UserType_Mapping_Id" />
@@ -144,18 +255,6 @@
           <Property Type="Int32" Name="User_UserType_Mapping_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="User_Id" />
           <Property Type="Int32" Name="UserType_Id" />
-          <Property Type="Boolean" Name="Is_Active" />
-          <Property Type="DateTime" Name="Created_Date" Precision="3" />
-          <Property Type="Int32" Name="Created_By" />
-          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
-          <Property Type="Int32" Name="Modify_By" />
-        </EntityType>
-        <EntityType Name="tb_UserType">
-          <Key>
-            <PropertyRef Name="UserType_Id" />
-          </Key>
-          <Property Type="Int32" Name="UserType_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Is_Active" />
           <Property Type="DateTime" Name="Created_Date" Precision="3" />
           <Property Type="Int32" Name="Created_By" />
@@ -179,61 +278,69 @@
           <Property Type="DateTime" Name="Modify_Date" Precision="3" />
           <Property Type="Int32" Name="Modify_By" />
         </EntityType>
-        <ComplexType Name="usp_getOfficeDetails_Result">
-          <Property Type="Int32" Name="Office_Detail_Id" Nullable="false" />
-          <Property Type="String" Name="Address_Line1" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Address_Line2" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="Country_Id" Nullable="true" />
-          <Property Type="Int32" Name="City_Id" Nullable="true" />
-          <Property Type="String" Name="Email_Address" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Website" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
-          </ComplexType>
-        <EntityType Name="tb_Contact">
+        <EntityType Name="tb_UserType">
           <Key>
-            <PropertyRef Name="Contact_Id" />
+            <PropertyRef Name="UserType_Id" />
           </Key>
-          <Property Type="Int32" Name="Contact_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserType_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Email_Address" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Website" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Comment" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Is_Active" />
-          <Property Type="DateTime" Name="Created_Date" Precision="3" />
-          <Property Type="Int32" Name="Created_By" />
-          <Property Type="DateTime" Name="Modify_Date" Precision="3" />
-          <Property Type="Int32" Name="Modify_By" />
-          <Property Type="String" Name="Subject" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tb_Page">
-          <Key>
-            <PropertyRef Name="Page_Id" />
-          </Key>
-          <Property Type="Int32" Name="Page_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Page_Content" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Parent_Page_Id" />
           <Property Type="Boolean" Name="Is_Active" />
           <Property Type="DateTime" Name="Created_Date" Precision="3" />
           <Property Type="Int32" Name="Created_By" />
           <Property Type="DateTime" Name="Modify_Date" Precision="3" />
           <Property Type="Int32" Name="Modify_By" />
         </EntityType>
-        <ComplexType Name="usp_GetAllPages_SubPages_Result">
-          <Property Type="Int32" Name="Page_Id" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Parent_Page_Id" Nullable="false" />
-          <Property Type="String" Name="Page_Content" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="Child_Pages" Nullable="true" MaxLength="1000" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EkomsysModelStoreContainer" CdmEntityContainer="DevSamplesEntities">
+          <FunctionImportMapping FunctionImportName="usp_CheckLogin" FunctionName="EkomsysModel.Store.usp_CheckLogin" />
+          <FunctionImportMapping FunctionImportName="usp_getOfficeDetails" FunctionName="EkomsysModel.Store.usp_getOfficeDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EkomsysModel.usp_getOfficeDetails_Result">
+                <ScalarProperty Name="Office_Detail_Id" ColumnName="Office_Detail_Id" />
+                <ScalarProperty Name="Address_Line1" ColumnName="Address_Line1" />
+                <ScalarProperty Name="Address_Line2" ColumnName="Address_Line2" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetAllPages_SubPages" FunctionName="EkomsysModel.Store.usp_GetAllPages_SubPages">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EkomsysModel.usp_GetAllPages_SubPages_Result">
+                <ScalarProperty Name="Page_Id" ColumnName="Page_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Parent_Page_Id" ColumnName="Parent_Page_Id" />
+                <ScalarProperty Name="Page_Content" ColumnName="Page_Content" />
+                <ScalarProperty Name="Child_Pages" ColumnName="Child_Pages" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tb_Contact">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_Contact">
+              <MappingFragment StoreEntitySet="tb_Contact">
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tb_News">
             <EntityTypeMapping TypeName="EkomsysModel.tb_News">
               <MappingFragment StoreEntitySet="tb_News">
@@ -249,6 +356,52 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tb_Page">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_Page">
+              <MappingFragment StoreEntitySet="tb_Page">
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Parent_Page_Id" ColumnName="Parent_Page_Id" />
+                <ScalarProperty Name="Page_Content" ColumnName="Page_Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Page_Id" ColumnName="Page_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SDK_Detail">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_SDK_Detail">
+              <MappingFragment StoreEntitySet="tb_SDK_Detail">
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Download_Link" ColumnName="Download_Link" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="SDK_Version_Name" ColumnName="SDK_Version_Name" />
+                <ScalarProperty Name="SDK_Id" ColumnName="SDK_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Support">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_Support">
+              <MappingFragment StoreEntitySet="tb_Support">
+                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
+                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Support_Id" ColumnName="Support_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tb_User_UserType_Mapping">
             <EntityTypeMapping TypeName="EkomsysModel.tb_User_UserType_Mapping">
               <MappingFragment StoreEntitySet="tb_User_UserType_Mapping">
@@ -260,19 +413,6 @@
                 <ScalarProperty Name="UserType_Id" ColumnName="UserType_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="User_UserType_Mapping_Id" ColumnName="User_UserType_Mapping_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_UserType">
-            <EntityTypeMapping TypeName="EkomsysModel.tb_UserType">
-              <MappingFragment StoreEntitySet="tb_UserType">
-                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
-                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
-                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="UserType_Id" ColumnName="UserType_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -294,66 +434,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="usp_CheckLogin" FunctionName="EkomsysModel.Store.usp_CheckLogin" />
-          <FunctionImportMapping FunctionImportName="usp_getOfficeDetails" FunctionName="EkomsysModel.Store.usp_getOfficeDetails">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="EkomsysModel.usp_getOfficeDetails_Result">
-                <ScalarProperty Name="Office_Detail_Id" ColumnName="Office_Detail_Id" />
-                <ScalarProperty Name="Address_Line1" ColumnName="Address_Line1" />
-                <ScalarProperty Name="Address_Line2" ColumnName="Address_Line2" />
-                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
-                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
-                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="tb_Contact">
-            <EntityTypeMapping TypeName="EkomsysModel.tb_Contact">
-              <MappingFragment StoreEntitySet="tb_Contact">
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <EntitySetMapping Name="tb_UserType">
+            <EntityTypeMapping TypeName="EkomsysModel.tb_UserType">
+              <MappingFragment StoreEntitySet="tb_UserType">
                 <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
                 <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
                 <ScalarProperty Name="Created_By" ColumnName="Created_By" />
                 <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
                 <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="UserType_Id" ColumnName="UserType_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_Page">
-            <EntityTypeMapping TypeName="EkomsysModel.tb_Page">
-              <MappingFragment StoreEntitySet="tb_Page">
-                <ScalarProperty Name="Modify_By" ColumnName="Modify_By" />
-                <ScalarProperty Name="Modify_Date" ColumnName="Modify_Date" />
-                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
-                <ScalarProperty Name="Parent_Page_Id" ColumnName="Parent_Page_Id" />
-                <ScalarProperty Name="Page_Content" ColumnName="Page_Content" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Page_Id" ColumnName="Page_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="usp_GetAllPages_SubPages" FunctionName="EkomsysModel.Store.usp_GetAllPages_SubPages">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="EkomsysModel.usp_GetAllPages_SubPages_Result">
-                <ScalarProperty Name="Page_Id" ColumnName="Page_Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Parent_Page_Id" ColumnName="Parent_Page_Id" />
-                <ScalarProperty Name="Page_Content" ColumnName="Page_Content" />
-                <ScalarProperty Name="Child_Pages" ColumnName="Child_Pages" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

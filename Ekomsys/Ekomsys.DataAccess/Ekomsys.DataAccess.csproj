@@ -61,12 +61,25 @@
     <Compile Include="Classes\UserManagementRepository.cs" />
     <Compile Include="Classes\UserRepository.cs" />
     <Compile Include="Classes\UserTypeRepository.cs" />
+    <Compile Include="Edmx\Ekomsys.Designer.cs" />
+    <Compile Include="Edmx\Ekomsys1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ekomsys.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IRepositoryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="Edmx\Ekomsys.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Ekomsys1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Edmx\Ekomsys.edmx.diagram">
+      <DependentUpon>Ekomsys.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -78,9 +91,7 @@
       <Name>Ekomsys.Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Edmx\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

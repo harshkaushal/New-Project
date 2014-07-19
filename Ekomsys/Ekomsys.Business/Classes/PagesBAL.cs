@@ -37,5 +37,16 @@ namespace Ekomsys.Business.Classes
             tb_Page dbPages= _repository.GetSingle(d => d.Page_Id == id);
             _repository.Delete(dbPages);
         }
+        public List<usp_GetAllPages_SubPages_Result> GetAllPages_SubPages()
+        {
+            _repository = new PagesRepository();
+            return _repository.GelAllPages_SubPages();
+        }
+
+        public string GetPageContent(int pageId)
+        {
+            _repository = new PagesRepository();
+            return _repository.GetSingle(d => d.Page_Id == pageId).Page_Content;
+        }
     }
 }

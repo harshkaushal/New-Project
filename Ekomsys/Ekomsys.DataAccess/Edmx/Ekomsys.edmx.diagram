@@ -5,12 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3faf78511f704a2ca130f3d2f4c66e48" Name="Diagram1">
-        <EntityTypeShape EntityType="EkomsysModel.tb_News" Width="1.5" PointX="4.0608485080585108" PointY="1.4060968763223369" />
-        <EntityTypeShape EntityType="EkomsysModel.tb_User_UserType_Mapping" Width="1.5" PointX="7.387060664308752" PointY="8.9067471366872759" />
-        <EntityTypeShape EntityType="EkomsysModel.tb_Users" Width="1.5" PointX="1.9254278102542402" PointY="13.007460346914577" />
-        <EntityTypeShape EntityType="EkomsysModel.tb_UserType" Width="1.5" PointX="11.712842060119305" PointY="26.626355824352409" />
-        <EntityTypeShape EntityType="EkomsysModel.tb_Contact" Width="1.5" PointX="8.881472321637661" PointY="19.494479933518207" />
-        <EntityTypeShape EntityType="EkomsysModel.tb_Page" Width="1.5" PointX="9.9515984663514416" PointY="16.671638675346802" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_Contact" Width="1.5" PointX="8.6017764213503227" PointY="4.1799494047555834" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_News" Width="1.5" PointX="0.19698420734935634" PointY="2.5235698681900138" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_Page" Width="1.5" PointX="10.17738992822235" PointY="15.989544115955729" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_SDK_Detail" Width="1.5" PointX="3.177824848879979" PointY="19.600412318296922" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_Support" Width="1.5" PointX="3.6035142632217676" PointY="17.814704545687281" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_User_UserType_Mapping" Width="1.5" PointX="8.544236717999091" PointY="17.793196388424" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_Users" Width="1.5" PointX="6.6922523950656192" PointY="17.641977407802816" />
+        <EntityTypeShape EntityType="EkomsysModel.tb_UserType" Width="1.5" PointX="7.9746617153168939" PointY="9.9400786058698216" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

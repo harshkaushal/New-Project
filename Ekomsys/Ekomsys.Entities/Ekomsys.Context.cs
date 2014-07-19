@@ -28,13 +28,14 @@ namespace Ekomsys.Entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<tb_Contact> tb_Contact { get; set; }
         public DbSet<tb_News> tb_News { get; set; }
         public DbSet<tb_Page> tb_Page { get; set; }
+        public DbSet<tb_SDK_Detail> tb_SDK_Detail { get; set; }
+        public DbSet<tb_Support> tb_Support { get; set; }
         public DbSet<tb_User_UserType_Mapping> tb_User_UserType_Mapping { get; set; }
         public DbSet<tb_Users> tb_Users { get; set; }
         public DbSet<tb_UserType> tb_UserType { get; set; }
-        public DbSet<tb_Contact> tb_Contact { get; set; }
-        public DbSet<tb_Page> tb_Page { get; set; }
     
         public virtual ObjectResult<Nullable<int>> usp_CheckLogin(string username, string password)
         {
